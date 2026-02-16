@@ -1,20 +1,81 @@
-# Exportación de App Base44 para GitHub Pages
+# Exportación Base44 - Portfolio Hub
 
-Este repositorio contiene el código exportado de tu aplicación Base44, optimizado para funcionar en **GitHub Pages**.
+**Código exportado de la aplicación Base44 original**
 
-## Instrucciones de Despliegue
+## 📦 Contenido
 
-1. **Crea un nuevo repositorio** en tu cuenta de GitHub (por ejemplo, `mi-portfolio`).
-2. **Sube todos los archivos** de esta carpeta (`index.html`, carpeta `assets/`) a la rama principal (`main`).
-3. Ve a la pestaña **Settings** de tu repositorio en GitHub.
-4. En el menú lateral, selecciona **Pages**.
-5. En la sección **Build and deployment**, asegúrate de que:
-   - **Source** sea "Deploy from a branch".
-   - **Branch** sea "main" y la carpeta sea "/ (root)".
-6. Haz clic en **Save**.
-7. ¡Listo! En unos minutos tu sitio estará disponible en `https://tu-usuario.github.io/mi-repo/`.
+- `index.html` - Archivo HTML principal
+- `assets/index.js` - JavaScript compilado (460 KB)
+- `assets/index.css` - Estilos CSS compilados (68 KB)
 
-## Notas Técnicas
-- Se han actualizado las rutas de los archivos JS y CSS para que sean relativas (`./assets/`), lo cual es necesario para GitHub Pages.
-- Se eliminó el script del "badge" de Base44 para una apariencia más limpia.
-- Las imágenes y recursos externos siguen apuntando a los servidores originales (Supabase/Base44).
+## 🚀 Cómo Usar
+
+### Opción 1: Abrir Localmente
+
+Simplemente abre `index.html` en tu navegador:
+
+```bash
+# En Windows
+start index.html
+
+# En macOS
+open index.html
+
+# En Linux
+xdg-open index.html
+```
+
+O arrastra `index.html` a tu navegador.
+
+### Opción 2: Servir con un Servidor Local
+
+Si necesitas un servidor HTTP (recomendado para evitar problemas CORS):
+
+```bash
+# Con Python 3
+python -m http.server 8000
+
+# Con Node.js (http-server)
+npx http-server
+
+# Con PHP
+php -S localhost:8000
+```
+
+Luego abre `http://localhost:8000` en tu navegador.
+
+## ⚠️ Limitaciones
+
+- **Dependencia de API de Base44**: Esta versión requiere conexión a los servidores de Base44 para funcionar correctamente
+- **No funciona en GitHub Pages**: Debido a las llamadas a `/api/apps/...` que devuelven 404
+- **Requiere Internet**: Las imágenes y datos se cargan desde servidores remotos
+
+## ✅ Alternativa Recomendada
+
+Si necesitas una versión **100% estática sin dependencias de backend**, consulta el proyecto `portfolio-estatico` que convierte esta aplicación en un sitio completamente independiente.
+
+## 📝 Archivos Incluidos
+
+| Archivo | Tamaño | Descripción |
+|---------|--------|-------------|
+| `index.html` | 2.3 KB | HTML base con referencias a assets |
+| `assets/index.js` | 460 KB | Aplicación React compilada |
+| `assets/index.css` | 68 KB | Estilos Tailwind compilados |
+
+## 🔍 Información Técnica
+
+- **Framework**: React (compilado)
+- **Estilos**: Tailwind CSS
+- **Build Tool**: Vite
+- **Versión Original**: Base44 Portfolio Hub
+
+## 📌 Notas
+
+- Los archivos están minificados y compilados para producción
+- Las rutas han sido actualizadas a rutas relativas (`./assets/`) para mejor compatibilidad
+- El script del "badge" de Base44 ha sido removido para una apariencia más limpia
+
+---
+
+**Creado**: Febrero 2026
+**Fuente**: https://githubpage.base44.app/
