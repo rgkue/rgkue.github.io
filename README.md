@@ -1,81 +1,109 @@
-# Exportación Base44 - Portfolio Hub
+# 🌐 rgkue.github.io
 
-**Código exportado de la aplicación Base44 original**
+## Portfolio técnico personal desplegado en GitHub Pages ##
 
-## 📦 Contenido
-
-- `index.html` - Archivo HTML principal
-- `assets/index.js` - JavaScript compilado (460 KB)
-- `assets/index.css` - Estilos CSS compilados (68 KB)
-
-## 🚀 Cómo Usar
-
-### Opción 1: Abrir Localmente
-
-Simplemente abre `index.html` en tu navegador:
-
-```bash
-# En Windows
-start index.html
-
-# En macOS
-open index.html
-
-# En Linux
-xdg-open index.html
-```
-
-O arrastra `index.html` a tu navegador.
-
-### Opción 2: Servir con un Servidor Local
-
-Si necesitas un servidor HTTP (recomendado para evitar problemas CORS):
-
-```bash
-# Con Python 3
-python -m http.server 8000
-
-# Con Node.js (http-server)
-npx http-server
-
-# Con PHP
-php -S localhost:8000
-```
-
-Luego abre `http://localhost:8000` en tu navegador.
-
-## ⚠️ Limitaciones
-
-- **Dependencia de API de Base44**: Esta versión requiere conexión a los servidores de Base44 para funcionar correctamente
-- **No funciona en GitHub Pages**: Debido a las llamadas a `/api/apps/...` que devuelven 404
-- **Requiere Internet**: Las imágenes y datos se cargan desde servidores remotos
-
-## ✅ Alternativa Recomendada
-
-Si necesitas una versión **100% estática sin dependencias de backend**, consulta el proyecto `portfolio-estatico` que convierte esta aplicación en un sitio completamente independiente.
-
-## 📝 Archivos Incluidos
-
-| Archivo | Tamaño | Descripción |
-|---------|--------|-------------|
-| `index.html` | 2.3 KB | HTML base con referencias a assets |
-| `assets/index.js` | 460 KB | Aplicación React compilada |
-| `assets/index.css` | 68 KB | Estilos Tailwind compilados |
-
-## 🔍 Información Técnica
-
-- **Framework**: React (compilado)
-- **Estilos**: Tailwind CSS
-- **Build Tool**: Vite
-- **Versión Original**: Base44 Portfolio Hub
-
-## 📌 Notas
-
-- Los archivos están minificados y compilados para producción
-- Las rutas han sido actualizadas a rutas relativas (`./assets/`) para mejor compatibilidad
-- El script del "badge" de Base44 ha sido removido para una apariencia más limpia
+🔗 Producción: https://rgkue.github.io  
+👨‍💻 Autor: Isaac Muñoz  
 
 ---
 
-**Creado**: Febrero 2026
-**Fuente**: https://githubpage.base44.app/
+## 📌 Contexto del Proyecto
+
+Este portafolio fue desarrollado inicialmente utilizando **Base44**, una plataforma de IA que genera aplicaciones con backend integrado y estructura administrada automáticamente.
+
+Posteriormente, el proyecto fue migrado manualmente a este repositorio (`rgkue.github.io`) para:
+
+- Eliminar la dependencia de Base44
+- Convertirlo en un sitio 100% estático
+- Desplegarlo directamente en GitHub Pages
+- Tener control total del código y los datos
+
+Como resultado de esa migración:
+
+- ❌ No existe backend activo
+- ❌ No existe autenticación
+- ❌ No existe conexión a APIs externas
+- ✅ Los datos se almacenan localmente en un archivo JSON
+- ✅ El sitio es completamente estático
+
+---
+
+## 🏗 Arquitectura Actual
+
+El sitio funciona bajo una arquitectura simple:
+
+- **Hosting:** GitHub Pages
+- **Frontend:** React (bundle minificado)
+- **Datos:** `projects.json` descargados directamente desde Base44
+- **Sin servidor**
+- **Sin API**
+- **Sin base de datos externa**
+
+Todos los proyectos se cargan desde:
+
+    /projects.json
+    
+Este archivo contiene la lista completa de proyectos originalmente almacenados en Base44.
+
+---
+
+## 📂 Estructura del Repositorio
+    
+    rgkue.github.io
+    ├── index.html
+    ├── projects.json
+    ├── favicon.png
+    ├── assets/
+    │ ├── index.js
+    │ └── index.css
+    ├── LICENSE
+    └── README.md
+
+
+### 🔹 `index.html`
+Archivo principal del sitio.
+
+### 🔹 `projects.json`
+Contiene todos los proyectos exportados desde Base44.
+Es la única "fuente de datos" del sitio.
+
+### 🔹 `assets/`
+Contiene el bundle del frontend.
+
+⚠ Importante:
+El código dentro de `assets/index.js` no está estructurado ni formateado.
+Es el código comprimido extraído automáticamente mediante Manus IA a partir del proyecto original en Base44.
+
+No es código limpio ni mantenible manualmente.
+Es un bundle compilado.
+
+---
+
+## 📊 Estructura de los Proyectos (projects.json)
+
+Cada proyecto sigue esta estructura:
+
+```json
+{
+  "id": "string",
+  "title": "string",
+  "category": "network | operative_systems | cybersecurity | empresa | hardware | experience",
+  "status": "completed | active",
+  "description": "string",
+  "tags": ["string"],
+  "github_url": "string | null"
+}
+```
+
+## 📧 Contacto
+
+# Isaac Muñoz
+> isaac.munozp2836@gmail.com
+
+> ginkue@proton.me
+
+> GitHub: https://github.com/rgkue
+
+
+
+
