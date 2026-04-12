@@ -1,29 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
- <head>
-  <meta charset="utf-8"/>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Portfolio Hub - Isaac Muñoz</title>
-  <script crossorigin="" src="./assets/index.js" type="module"></script>
-  <link crossorigin="" href="./assets/index.css" rel="stylesheet"/>
-  <meta content="Portfolio Hub" property="og:title"/>
-  <meta content="A personalized page to showcase your technical projects, skills, and GitHub activity." property="og:description"/>
-  <meta content="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/render/image/public/base44-prod/public/699242b91f4022dbc14d6ef6/93be0e8dd_logo.png?width=1200&amp;height=630&amp;resize=contain" property="og:image"/>
-  <meta content="website" property="og:type"/>
-  <meta content="Portfolio Hub" property="og:site_name"/>
-  <meta content="summary_large_image" name="twitter:card"/>
-  <meta content="Portfolio Hub" name="twitter:title"/>
-  <meta content="A personalized page to showcase your technical projects, skills, and GitHub activity." name="twitter:description"/>
-  <meta content="A personalized page to showcase your technical projects, skills, and GitHub activity." name="description"/>
-  <meta content="yes" name="mobile-web-app-capable"/>
-  <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-  <meta content="Portfolio Hub" name="apple-mobile-web-app-title"/>
- </head>
- <body>
-  <div id="root"></div>
-<script>
-  document.title = "Presentación de Isaac Muñoz";
-</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isaac Muñoz - Portafolio</title>
+  <meta name="description" content="Portafolio de Isaac Muñoz (rgkue) — Estudiante de Ciberseguridad, UTP Panamá." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="hero">
+  <div id="hero-photo" class="hero-photo-placeholder">👤</div>
+  <h1 id="hero-name" class="hero-name"></h1>
+  <div id="hero-alias" class="hero-alias mono"></div>
+  <div id="hero-tagline" class="hero-tagline mono"></div>
+  <div id="hero-socials" class="hero-socials"></div>
+  <div class="scroll-hint">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TECNOLOGÍAS — Carrusel
+══════════════════════════════════════════ -->
+<section id="tools">
+  <p class="section-label"><span>Tecnologías &amp; Herramientas</span></p>
+  <div class="carousel-track-wrap">
+    <div id="carousel-track" class="carousel-track"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROYECTOS
+══════════════════════════════════════════ -->
+<section id="projects">
+  <p class="section-label"><span>Proyectos &amp; Categorías</span></p>
+  <div class="container">
+    <div id="projects-list"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICIOS
+     Para activar: rellena PORTFOLIO.services en data.js
+══════════════════════════════════════════ -->
+<section id="services">
+  <p class="section-label"><span>Servicios</span></p>
+  <div class="container">
+    <div id="services-content"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     HABILIDADES & CV
+══════════════════════════════════════════ -->
+<section id="skills">
+  <p class="section-label"><span>Habilidades &amp; Experiencia</span></p>
+  <div class="container">
+
+    <!-- CV downloadable -->
+    <div class="cv-card fade-up">
+      <div class="cv-icon">📄</div>
+      <div class="cv-title">Hoja de Vida</div>
+      <div class="cv-sub">Estudiante de Ciberseguridad — Universidad Tecnológica de Panamá</div>
+      <a id="cv-link" href="assets/cv.pdf" target="_blank" class="btn-cv">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Descargar CV (PDF)
+      </a>
+    </div>
+
+    <!-- Tarjetas de habilidades (generadas desde data.js) -->
+    <div id="skills-grid" class="skills-grid"></div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     EDUCACIÓN
+══════════════════════════════════════════ -->
+<section id="education">
+  <div class="container">
+    <p class="section-sub mono">Educación</p> 
+    <div id="education-list"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     EXPERIENCIA PROFESIONAL
+══════════════════════════════════════════ -->
+<section id="experience">
+  <div class="container">
+    <p class="section-sub mono">Experiencia Profesional</p>
+    <div id="experience-list"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div id="footer-social" class="footer-social"></div>
+  <div id="footer-emails" class="footer-emails"></div>
+  <div id="footer-copy"   class="footer-copy mono"></div>
+</footer>
+
+<!-- data primero, luego lógica -->
+<script src="data.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

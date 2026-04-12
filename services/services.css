@@ -1,0 +1,149 @@
+/* ─── SERVICIOS — PAGE STYLES ───────────────────────────────────── */
+
+/* Nav */
+.srv-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(8, 11, 10, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.srv-back {
+  display: flex; align-items: center; gap: 0.4rem;
+  color: var(--text-dim); font-size: 0.8rem;
+  text-decoration: none; transition: color 0.2s;
+}
+.srv-back:hover { color: var(--green); }
+.srv-alias { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Header */
+.srv-header {
+  padding: 7rem 2rem 3rem;
+  max-width: 700px; margin: 0 auto;
+  text-align: center;
+}
+.srv-label {
+  font-size: 0.78rem; color: var(--green);
+  letter-spacing: 0.08em; margin-bottom: 0.75rem;
+}
+.srv-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800; color: #fff;
+  line-height: 1.15; margin-bottom: 0.75rem;
+}
+.srv-subtitle {
+  font-size: 0.95rem; color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.srv-image-wrap {
+  margin-top: 1.5rem;
+  display: flex; justify-content: center;
+}
+
+.srv-image {
+  width: min(100%, 680px);
+  height: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+
+/* Grid de cards */
+.srv-main {
+  max-width: 900px; margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+.srv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* Card individual */
+.srv-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  transition: border-color 0.2s, transform 0.2s;
+  opacity: 0; transform: translateY(18px);
+  transition: border-color 0.2s, transform 0.3s, opacity 0.4s;
+}
+.srv-card.visible { opacity: 1; transform: translateY(0); }
+.srv-card:hover { border-color: var(--green-dim); transform: translateY(-3px); }
+
+.srv-card-icon { font-size: 2rem; line-height: 1; }
+.srv-card-title { font-size: 1rem; font-weight: 700; color: #fff; }
+.srv-card-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; flex: 1; }
+
+.srv-card-tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem;
+}
+.srv-card-tag {
+  font-family: var(--mono); font-size: 0.7rem;
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 0.15rem 0.6rem; color: var(--text-dim);
+  background: var(--bg-card-2);
+}
+
+.srv-card-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: var(--mono); font-size: 0.72rem;
+  color: var(--green); border: 1px solid var(--green-dim);
+  border-radius: 999px; padding: 0.2rem 0.7rem;
+  background: var(--green-glow); width: fit-content;
+}
+
+/* Contacto */
+.srv-contact {
+  max-width: 700px; margin: 0 auto;
+  padding: 2rem 2rem 5rem;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.srv-contact-label {
+  font-size: 0.8rem; color: var(--green);
+  letter-spacing: 0.08em;
+}
+.srv-contact-buttons {
+  display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;
+}
+.srv-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+  border: 1px solid var(--green-dim);
+  background: var(--green-glow); color: var(--green);
+}
+.srv-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+.srv-btn.primary {
+  background: var(--green); color: #080b0a;
+  border-color: var(--green);
+}
+.srv-btn.primary:hover { opacity: 0.9; }
+
+.srv-contact-note {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted);
+  max-width: 420px; line-height: 1.6;
+}
+
+/* Footer */
+.srv-footer {
+  text-align: center; padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem; color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .srv-nav { padding: 1rem; }
+  .srv-header { padding: 6rem 1.25rem 2rem; }
+  .srv-main { padding: 0 1.25rem 3rem; }
+  .srv-contact { padding: 2rem 1.25rem 4rem; }
+  .srv-grid { grid-template-columns: 1fr; }
+}
