@@ -58,7 +58,7 @@ const PORTFOLIO = {
           title: "ControlAnime: Listas personales de anime con backup en la nube",
           description: "Desarrollo de un sitio web para la comunidad de anime con el fin de registrar lista de animes vistos, pendientes, abandonados, etc. Utilizando HTML, CSS, JavaScript, FastAPI y PostgreSQL.",
           tags: ["HTML", "CSS", "JavaScript", "FastAPI", "PostgreSQL", "Web Development"],
-          status: "done",
+          status: "in-progress",
           repo: "https://github.com/rgkue/ControlAnime",
         }
       ],
