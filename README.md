@@ -11,8 +11,10 @@
      Personaliza en: https://readme-typing-svg.demolab.com/demo/
      color=00FF41 → verde neón de tu paleta
      font=JetBrains+Mono → misma fuente que tu sitio
+     backup: https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&pause=1200&color=00FF41&center=true&vCenter=true&width=600&lines=Hey+         %F0%9F%91%8B%2C+soy+Isaac+Mu%C3%B1oz+%E2%80%94+rgkue;Building+to+learn.+Learning+to+build.;Ciberseguridad+%7C+Redes+                                               %7C+Linux;Universidad+Tecnol%C3%B3gica+de+Panam%C3%A1+%F0%9F%87%B5%F0%9F%87%A6
+
 ─────────────────────────────────────────────────────────────────── -->
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&pause=1200&color=00FF41&center=true&vCenter=true&width=600&lines=Hey+%F0%9F%91%8B%2C+soy+Isaac+Mu%C3%B1oz+%E2%80%94+rgkue;Building+to+learn.+Learning+to+build.;Ciberseguridad+%7C+Redes+%7C+Linux;Universidad+Tecnol%C3%B3gica+de+Panam%C3%A1+%F0%9F%87%B5%F0%9F%87%A6)](https://rgkue.github.io)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Times+News+Roman&weight=500&size=25&pause=1000&color=19FF4B&width=435&lines=Isaac+Mu%C3%B1oz+-+rgkue;Building+to+learn%2C+learning+to+build;Cybersecurity+and+Networking)](https://rgkue.github.io)
 
 <br/>
 
@@ -32,7 +34,7 @@
 
 [![Vista previa del portafolio](assets/preview.png)](https://rgkue.github.io)
 
-> 🔗 **[rgkue.github.io](https://rgkue.github.io)** — Portafolio personal · Ciudad de Panamá 🇵🇦
+> 🔗 **[rgkue.github.io](https://rgkue.github.io)** — Portafolio personal · Panamá 🇵🇦
 
 </div>
 
