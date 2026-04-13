@@ -28,14 +28,6 @@
 
 ## 🌐 Vista Previa del Sitio
 
-<!-- ── CAPTURA DEL SITIO ────────────────────────────────────────────
-     📸 INSTRUCCIÓN: Saca un screenshot del hero de tu portafolio
-        (la pantalla completa con tu foto, nombre y botones sociales)
-        → Nómbralo: assets/preview.png
-        → Súbelo dentro del mismo repositorio
-        → El link de abajo lo mostrará automáticamente en GitHub
-─────────────────────────────────────────────────────────────────── -->
-
 <div align="center">
 
 [![Vista previa del portafolio](assets/preview.png)](https://rgkue.github.io)
