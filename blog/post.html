@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post — rgkue blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="../assets/icon.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+
+<body id="page-post">
+
+  <!-- ══ NAV ══════════════════════════════════════════════════════ -->
+  <nav>
+    <a class="nav-back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+      Volver al blog
+    </a>
+    <span class="nav-brand mono">Isaac Muñoz</span>
+  </nav>
+
+  <!-- ══ CONTENIDO DEL POST ════════════════════════════════════════ -->
+  <article class="post-page">
+
+    <!-- Header del post -->
+    <header class="post-hero" id="post-hero">
+      <div id="post-meta" class="post-page-meta"></div>
+      <h1 id="post-title" class="post-page-title"></h1>
+      <div id="post-tags" class="post-tags"></div>
+    </header>
+
+    <!-- Cuerpo del post (HTML desde data.js) -->
+    <div id="post-body" class="post-body"></div>
+
+    <!-- Navegación anterior/siguiente -->
+    <nav id="post-nav" class="post-nav" aria-label="Navegación entre posts"></nav>
+
+    <!-- ══ COMENTARIOS (utterances) ══════════════════════════════
+       Los comentarios se muestran aquí.
+       Para que funcionen necesitas:
+       1. Que tu repo sea PÚBLICO en GitHub
+       2. Instalar la app "utterances" en tu repo:
+          https://github.com/apps/utterances
+       3. El script se inyecta desde blog.js automáticamente.
+  ════════════════════════════════════════════════════════════ -->
+    <section class="comments-section">
+      <h2>Comentarios</h2>
+      <div id="comments-container"></div>
+    </section>
+
+  </article>
+
+  <script src="data.js"></script>
+  <script src="blog.js"></script>
+</body>
+
+</html>

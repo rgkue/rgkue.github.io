@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — rgkue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="../assets/icon.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+
+<body id="page-index">
+
+  <!-- ══ NAV ══════════════════════════════════════════════════════ -->
+  <nav>
+    <a class="nav-back" href="../index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+      Volver al portafolio
+    </a>
+
+    <label class="nav-search" for="search-input">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+      <input id="search-input" type="text" placeholder="Buscar posts..." autocomplete="off" />
+    </label>
+
+    <span class="nav-brand mono">Isaac Muñoz</span>
+  </nav>
+
+  <!-- ══ LAYOUT ════════════════════════════════════════════════════ -->
+  <div class="blog-layout">
+
+    <!-- SIDEBAR -->
+    <aside>
+
+      <div class="sidebar-section">
+        <h3>Últimos posts</h3>
+        <div id="recent-list" class="recent-list"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Categorías</h3>
+        <div id="cat-list" class="cat-list"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Vista</h3>
+        <button id="timeline-toggle" class="timeline-btn">📅 Ver línea de tiempo</button>
+      </div>
+
+    </aside>
+
+    <!-- MAIN FEED -->
+    <main>
+
+      <div class="feed-status">
+        <span class="mono" id="feed-count"></span>
+        <button id="reset-btn" class="reset-btn">✕ Limpiar filtros</button>
+      </div>
+
+      <!-- Grid normal -->
+      <div id="posts-grid"></div>
+
+      <!-- Línea de tiempo (oculta por defecto) -->
+      <div id="timeline-view"></div>
+
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="blog.js"></script>
+</body>
+
+</html>

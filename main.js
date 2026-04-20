@@ -294,6 +294,43 @@ function renderExperience() {
   });
 }
 
+// ─── BLOG PREVIEW ─────────────────────────────────────────────────
+
+function renderBlogPreview() {
+  const grid = document.getElementById('blog-preview-grid');
+  if (!grid) return;
+
+  // Si blog/data.js no cargó (BLOG no definido), salir silenciosamente
+  if (typeof BLOG === 'undefined') return;
+
+  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  function fmtDate(str) {
+    const [y, m, d] = str.split('-');
+    return `${parseInt(d)} ${months[parseInt(m)-1]} ${y}`;
+  }
+
+  // Mostrar los 3 posts más recientes
+  const recent = BLOG.posts.slice(0, 3);
+
+  recent.forEach(post => {
+    const a = document.createElement('a');
+    a.className = 'blog-preview-card fade-up';
+    a.href = `blog/post.html?id=${post.id}`;
+    a.innerHTML = `
+      <div class="blog-preview-meta">
+        <span class="blog-preview-cat">${post.category}</span>
+        <span class="blog-preview-date">${fmtDate(post.date)}</span>
+      </div>
+      <div class="blog-preview-title">${post.title}</div>
+      <div class="blog-preview-excerpt">${post.excerpt}</div>
+      <div class="blog-preview-tags">
+        ${post.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
+    `;
+    grid.appendChild(a);
+  });
+}
+
 // ─── FOOTER ───────────────────────────────────────────────────────
 function renderFooter() {
   const social = document.getElementById('footer-social');
@@ -332,6 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCarousel();
   renderProjects();
   renderServices();
+  renderBlogPreview();
   renderSkills();
   renderEducation();
   renderExperience();
