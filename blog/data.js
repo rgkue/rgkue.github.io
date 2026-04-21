@@ -79,7 +79,7 @@ const BLOG = {
 
         <h2>La Inteligencia Artificial en el campo de la Ciberseguridad</h2>
         <p>
-        Me quedo con el aprendizaje que obtuve de la charla del Sr. Ruben Rubio. el cual explicaba como la IA puede ser utilizada para automatizar la defensa en la infraestructura
+        Me quedo con el aprendizaje que obtuve de la charla del Sr. Roberto Rubio. el cual explicaba como la IA puede ser utilizada para automatizar la defensa en la infraestructura
         A través de plataformas como OpenCode.
         </p>
 
