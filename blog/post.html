@@ -44,17 +44,13 @@
     <!-- Navegación anterior/siguiente -->
     <nav id="post-nav" class="post-nav" aria-label="Navegación entre posts"></nav>
 
-    <!-- ══ COMENTARIOS (utterances) ══════════════════════════════
-       Los comentarios se muestran aquí.
-       Para que funcionen necesitas:
-       1. Que tu repo sea PÚBLICO en GitHub
-       2. Instalar la app "utterances" en tu repo:
-          https://github.com/apps/utterances
-       3. El script se inyecta desde blog.js automáticamente.
-  ════════════════════════════════════════════════════════════ -->
     <section class="comments-section">
       <h2>Comentarios</h2>
-      <div id="comments-container"></div>
+      <div id="comments-container">
+        <script src="https://utteranc.es/client.js" repo="rgkue/rgkue.github.io" issue-term="pathname"
+          theme="github-dark" crossorigin="anonymous" async>
+          </script>
+      </div>
     </section>
 
   </article>
