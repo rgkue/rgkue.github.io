@@ -7,15 +7,15 @@
 
 function formatDate(str) {
   const [y, m, d] = str.split('-');
-  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  return `${parseInt(d)} ${months[parseInt(m)-1]} ${y}`;
+  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  return `${parseInt(d)} ${months[parseInt(m) - 1]} ${y}`;
 }
 
 function formatMonthYear(str) {
   const [y, m] = str.split('-');
-  const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-                  'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  return `${months[parseInt(m)-1]} ${y}`;
+  const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  return `${months[parseInt(m) - 1]} ${y}`;
 }
 
 // Estado de la UI
@@ -231,8 +231,8 @@ function initSearch() {
 
 function initViewToggle() {
   const tlBtn = document.getElementById('timeline-toggle');
-  const grid  = document.getElementById('posts-grid');
-  const tl    = document.getElementById('timeline-view');
+  const grid = document.getElementById('posts-grid');
+  const tl = document.getElementById('timeline-view');
   if (!tlBtn || !grid || !tl) return;
 
   tlBtn.addEventListener('click', () => {
@@ -339,7 +339,7 @@ function initPost() {
   if (bodyEl) bodyEl.innerHTML = post.content;
 
   // Navegación anterior / siguiente
-  const idx  = BLOG.posts.indexOf(post);
+  const idx = BLOG.posts.indexOf(post);
   const prev = BLOG.posts[idx + 1]; // más antiguo
   const next = BLOG.posts[idx - 1]; // más reciente
 
@@ -357,27 +357,12 @@ function initPost() {
     `;
   }
 
-  // Comentarios con utterances
-  // utterances usa tus GitHub Issues como base de datos de comentarios.
-  // IMPORTANTE: cambia "rgkue/rgkue.github.io" por tu repo real si es diferente.
-  const commentsEl = document.getElementById('comments-container');
-  if (commentsEl) {
-    const script = document.createElement('script');
-    script.src               = 'https://utteranc.es/client.js';
-    script.setAttribute('repo',            'rgkue/rgkue.github.io');
-    script.setAttribute('issue-term',      'pathname');
-    script.setAttribute('label',           'blog-comment');
-    script.setAttribute('theme',           'github-dark');
-    script.setAttribute('crossorigin',     'anonymous');
-    script.async = true;
-    commentsEl.appendChild(script);
-  }
-}
 
-// ── DISPATCH ─────────────────────────────────────────────────────
+  // ── DISPATCH ─────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Detecta en qué página estamos por el body id
-  if (document.body.id === 'page-index') initIndex();
-  if (document.body.id === 'page-post')  initPost();
-});
+  document.addEventListener('DOMContentLoaded', () => {
+    // Detecta en qué página estamos por el body id
+    if (document.body.id === 'page-index') initIndex();
+    if (document.body.id === 'page-post') initPost();
+  })
+};
