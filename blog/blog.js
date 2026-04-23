@@ -356,13 +356,12 @@ function initPost() {
       </div>
     `;
   }
+}
 
+// ── DISPATCH ─────────────────────────────────────────────────────
 
-  // ── DISPATCH ─────────────────────────────────────────────────────
-
-  document.addEventListener('DOMContentLoaded', () => {
-    // Detecta en qué página estamos por el body id
-    if (document.body.id === 'page-index') initIndex();
-    if (document.body.id === 'page-post') initPost();
-  })
-};
+document.addEventListener('DOMContentLoaded', () => {
+  // Detecta en qué página estamos por el body id
+  if (document.body.id === 'page-index') initIndex();
+  if (document.body.id === 'page-post') initPost();
+});
