@@ -101,7 +101,7 @@ const writeupsData = [
 
   // ── TryHackMe ────────────────────────────────────────────────
   {
-     title:       "Dumping Router Firmware",
+     title:       "DumpingRouterFirmware",
      platform:    "TryHackMe",
      difficulty:  "Medium",
      date:        "2026-05-23",
@@ -110,5 +110,16 @@ const writeupsData = [
      path:        "contents/TryHackMe/DumpingRouterFirmware",
      url:         "https://tryhackme.com/room/rfirmware",
      image:       "contents/TryHackMe/DumpingRouterFirmware/thumb.png",
+   },
+   {
+     title:       "Publisher",
+     platform:    "TryHackMe",
+     difficulty:  "Easy",
+     date:        "2026-05-23",
+     tags:        ["Forensics", "Binwalk", "Linux"],
+     description: "Enumeración de directorios y ejecución remota de comandos (RCE).",
+     path:        "contents/TryHackMe/Publisher",
+     url:         "https://tryhackme.com/room/publisher",
+     image:       "contents/TryHackMe/Publisher/thumb.png",
    },
 ];
