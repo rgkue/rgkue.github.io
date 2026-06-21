@@ -9,24 +9,20 @@
 
 ---
 
-## 📝 Introduction
+## Introducción
 
 Máquina enfocada en la enumeración y explotación de un servidor **Redis** expuesto sin autenticación.
 
 ---
 
-## 🔍 Enumeration
-
-### Network Scanning
-
-Primero probamos conectividad con **ping**, luego escaneamos todos los puertos:
+## Escaneo de puertos con Nmap
 
 ```bash
 nmap -p- --min-rate 5000 [IP]
 ```
 
 - **-p-** — escaneo a **todos** los puertos
-- **--min-rate 5000** — aumentar velocidad del escaneo (equivalente a `-T5000`)
+- **--min-rate 5000** — aumentar velocidad del escaneo
 
 ![](media/image1.png)
 
@@ -42,7 +38,7 @@ Se encuentra el puerto **6379/tcp open** corriendo el servicio **Redis**.
 
 ---
 
-## 🚀 Exploitation
+## Explotación
 
 ### Conexión al servidor Redis
 
@@ -88,21 +84,10 @@ En la base de datos **0** el comando `dbsize` devuelve **4 claves**. Listándola
 
 ---
 
-## 🚩 Flag
+## Flag
 
 ```bash
 get flag
 ```
 
 Con el comando `get` obtenemos el contenido de la clave **flag**, completando la máquina.
-
----
-
-## 📂 Project Structure
-
-```
-.
-├── escaneo          # Nmap output
-├── media/           # Capturas de pantalla
-└── Redentor.md      # Este writeup
-```

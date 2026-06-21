@@ -46,7 +46,10 @@ document.getElementById("meta-diff").className       = `meta-diff ${diffClass(di
 
 // ── Cargar y renderizar Markdown ──────────────────────────────
 async function loadWriteup() {
-  const mdUrl   = `${path}/README.md`;
+  // Construir URL absoluta con cada segmento codificado
+  const base    = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/");
+  const encoded = path.split("/").map(encodeURIComponent).join("/");
+  const mdUrl   = `${base}${encoded}/README.md`;
   const loading = document.getElementById("md-loading");
   const body    = document.getElementById("md-body");
 
@@ -55,11 +58,10 @@ async function loadWriteup() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     let markdown = await res.text();
 
-    // Reescribir rutas de imágenes: media/img.png → {path}/media/img.png
-    // Marked las dejará como src relativas al HTML — ajustamos la base
+    // Reescribir rutas de imágenes usando URL absoluta codificada
     markdown = markdown.replace(
       /!\[([^\]]*)\]\(media\//g,
-      `![$1](${path}/media/`
+      `![$1](${base}${encoded}/media/`
     );
 
     // Configurar marked
