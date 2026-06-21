@@ -1,23 +1,54 @@
-// ─── ESTRELLAS (reutilizada del portafolio) ───────────────────────
+/**
+ * services/services.js
+ * Lee desde SERVICES_DATA (services-data.js).
+ */
+
+// ── Mapa de íconos SVG ────────────────────────────────────────────
+const ICONS = {
+  wrench: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+  </svg>`,
+  laptop: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+  </svg>`,
+  terminal: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+  </svg>`,
+  book: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+  </svg>`,
+  chat: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>`,
+};
+
+// ── Canvas de estrellas ───────────────────────────────────────────
 function initStars() {
   const canvas = document.getElementById('stars-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, stars;
-  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
   function makeStars() {
     stars = Array.from({ length: 130 }, () => ({
-      x: Math.random() * W, y: Math.random() * H,
-      r: Math.random() * 1.2 + 0.3,
-      o: Math.random() * Math.PI * 2,
+      x:     Math.random() * W,
+      y:     Math.random() * H,
+      r:     Math.random() * 1.2 + 0.3,
+      o:     Math.random() * Math.PI * 2,
       speed: Math.random() * 0.4 + 0.05,
     }));
   }
+
   function draw() {
     ctx.clearRect(0, 0, W, H);
     stars.forEach(s => {
       s.o += s.speed * 0.012;
-      const alpha = 0.08 + 0.35 * Math.abs(Math.sin(s.o));
+      const alpha = 0.06 + 0.28 * Math.abs(Math.sin(s.o));
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(61,220,132,${alpha})`;
@@ -25,114 +56,90 @@ function initStars() {
     });
     requestAnimationFrame(draw);
   }
+
   window.addEventListener('resize', () => { resize(); makeStars(); });
   resize(); makeStars(); draw();
 }
 
-// ─── NAV ─────────────────────────────────────────────────────────
-function renderNav() {
-  const alias = document.getElementById('nav-alias');
-  if (alias) alias.textContent = PORTFOLIO.alias;
-}
+// ── Grid 2x2 de cards ────────────────────────────────────────────
+function renderCascade() {
+  const container = document.getElementById('srv-cascade');
+  if (!container) return;
 
-// ─── HEADER ──────────────────────────────────────────────────────
-function renderHeader() {
-  const page = PORTFOLIO.servicesPage || {};
-  const title = document.getElementById('srv-title');
-  const subtitle = document.getElementById('srv-subtitle');
-  const image = document.getElementById('srv-image');
-  if (title) title.textContent = page.title || 'Servicios';
-  if (subtitle) subtitle.textContent = page.subtitle || '';
-  if (image && page.image) {
-    const src = page.image.match(/^(https?:\/\/|\/)/) ? page.image : `../${page.image}`;
-    image.src = src;
-    image.alt = page.imageAlt || 'Servicio destacado';
-    image.style.display = 'block';
-  } else if (image) {
-    image.style.display = 'none';
-  }
-}
+  const d = SERVICES_DATA;
 
-// ─── GRID DE SERVICIOS ───────────────────────────────────────────
-function renderServiceCards() {
-  const grid = document.getElementById('srv-grid');
-  if (!grid) return;
+  const label = document.createElement('p');
+  label.className = 'srv-section-label mono';
+  label.textContent = '>_ servicios';
+  container.appendChild(label);
 
-  const services = PORTFOLIO.services || [];
-  if (services.length === 0) {
-    grid.innerHTML = `
-      <div style="grid-column:1/-1; text-align:center; color:var(--text-dim); font-family:var(--mono); font-size:0.85rem; padding:3rem 0;">
-        🚧 Próximamente
-      </div>`;
-    return;
-  }
+  const grid = document.createElement('div');
+  grid.className = 'srv-grid';
+  container.appendChild(grid);
 
-  services.forEach(srv => {
+  // Solo los primeros 4 servicios (excluye "Otros")
+  const visibleServices = d.services.filter(s => s.title !== 'Otros').slice(0, 4);
+
+  visibleServices.forEach((srv, i) => {
     const card = document.createElement('div');
-    card.className = 'srv-card fade-up';
+    card.className = 'srv-card';
+    card.setAttribute('data-index', i);
 
-    const tagsHtml = (srv.tags || [])
-      .map(t => `<span class="srv-card-tag">${t}</span>`)
-      .join('');
-
-    const badgeHtml = srv.badge
-      ? `<div class="srv-card-badge"><span>●</span>${srv.badge}</div>`
-      : '';
+    const iconSvg = ICONS[srv.icon] || '';
 
     card.innerHTML = `
-      <div class="srv-card-icon">${srv.icon || '🛠️'}</div>
-      <div class="srv-card-title">${srv.title}</div>
+      <div class="srv-card-header">
+        <span class="srv-card-icon">${iconSvg}</span>
+        <div class="srv-card-title">${srv.title}</div>
+      </div>
       <div class="srv-card-desc">${srv.description}</div>
-      ${tagsHtml ? `<div class="srv-card-tags">${tagsHtml}</div>` : ''}
-      ${badgeHtml}
+      ${srv.tags.length ? `<div class="srv-card-tags">${srv.tags.map(t => `<span class="srv-card-tag">${t}</span>`).join('')}</div>` : ''}
+      ${srv.badge ? `<span class="srv-card-badge">${srv.badge}</span>` : ''}
     `;
+
     grid.appendChild(card);
   });
 }
 
-// ─── CONTACTO ────────────────────────────────────────────────────
+// ── Sección contacto ──────────────────────────────────────────────
 function renderContact() {
-  const page = PORTFOLIO.servicesPage || {};
-  const buttonsEl = document.getElementById('srv-contact-buttons');
-  const noteEl = document.getElementById('srv-note');
+  const d = SERVICES_DATA;
 
-  if (noteEl && page.contactNote) noteEl.textContent = page.contactNote;
+  const nameEl    = document.getElementById('srv-contact-name');
+  const noteEl    = document.getElementById('srv-contact-note');
+  const emailLink = document.getElementById('srv-email-link');
+  const emailText = document.getElementById('srv-email-text');
+  const wspLink   = document.getElementById('srv-wsp-link');
+  const wspText   = document.getElementById('srv-wsp-text');
 
-  if (!buttonsEl) return;
-  (page.contactButtons || []).forEach((btn, i) => {
-    const a = document.createElement('a');
-    a.href = btn.url;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.className = `srv-btn${i === 0 ? ' primary' : ''}`;
-    a.innerHTML = `${btn.emoji || ''} ${btn.label}`;
-    buttonsEl.appendChild(a);
-  });
+  if (nameEl) {
+    nameEl.innerHTML = `${d.name} <img class="srv-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1f5-1f1e6.svg" alt="Panamá" />`;
+  }
+  if (noteEl)    noteEl.textContent    = d.contactNote;
+  if (emailLink) emailLink.href        = `mailto:${d.email}`;
+  if (emailText) emailText.textContent = d.email;
+  if (wspLink)   wspLink.href          = d.whatsapp.url;
+  if (wspText)   wspText.textContent   = d.whatsapp.label;
 }
 
-// ─── FOOTER ──────────────────────────────────────────────────────
-function renderFooter() {
-  const copy = document.getElementById('srv-footer-copy');
-  if (copy) copy.innerHTML = `$ <span>${PORTFOLIO.alias}</span> · ${new Date().getFullYear()}`;
-}
-
-// ─── SCROLL OBSERVER ─────────────────────────────────────────────
-function initScrollObserver() {
+// ── Scroll observer ───────────────────────────────────────────────
+function initObserver() {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.srv-card').forEach(el => obs.observe(el));
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────
+// ── Init ──────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initStars();
-  renderNav();
-  renderHeader();
-  renderServiceCards();
+  renderCascade();
   renderContact();
-  renderFooter();
-  setTimeout(initScrollObserver, 80);
+  setTimeout(initObserver, 80);
 });

@@ -1,0 +1,113 @@
+/* ─── TOPBAR COMPARTIDO ─────────────────────────────────────────
+   /nav.css — inyectado por nav.js en todas las páginas
+─────────────────────────────────────────────────────────────── */
+
+#site-nav {
+  /* Default: fixed — acompaña el scroll en todas las páginas */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 48px;
+
+  background: transparent;
+  border-bottom: none;
+
+  font-family: inherit;
+  font-size: 0.78rem;
+}
+
+/* En index: absolute — el scroll lo deja atrás */
+body.page-index #site-nav {
+  position: absolute;
+  border-bottom-color: transparent;
+}
+
+/* Compensar altura del nav en páginas NO-index */
+body:not(.page-index) {
+  padding-top: 48px;
+}
+
+/* ─── MARCA ────────────────────────────────────────────────────── */
+#site-nav .nav-brand {
+  color: #3ddc84;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  font-family: inherit;
+  transition: opacity 0.2s;
+}
+#site-nav .nav-brand:hover { opacity: 0.65; }
+
+/* ─── LINKS CENTRALES — centrado real con absolute ───────────── */
+#site-nav .nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+#site-nav .nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  color: #4e6b55;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.75rem;
+  transition: color 0.15s, background 0.15s;
+}
+
+#site-nav .nav-links a:hover {
+  color: #d4e8d8;
+  background: rgba(61, 220, 132, 0.07);
+}
+
+#site-nav .nav-links a.active { color: #3ddc84; }
+
+#site-nav .nav-links svg { opacity: 0.55; flex-shrink: 0; }
+#site-nav .nav-links a:hover svg,
+#site-nav .nav-links a.active svg { opacity: 1; }
+
+/* ─── DERECHA: ruta dinámica ──────────────────────────────────── */
+#site-nav .nav-right {
+  color: #2e4a35;
+  font-size: 0.68rem;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  #site-nav {
+    padding: 0 1rem;
+  }
+  #site-nav .nav-links {
+    position: static;
+    transform: none;
+    gap: 0;
+  }
+  #site-nav .nav-links a {
+    padding: 0.3rem 0.45rem;
+    font-size: 0;        /* oculta texto, muestra solo icono */
+  }
+  #site-nav .nav-links svg {
+    opacity: 0.7;
+  }
+  #site-nav .nav-links a.active svg { opacity: 1; }
+  #site-nav .nav-right {
+    display: none;
+  }
+}

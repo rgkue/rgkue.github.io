@@ -8,48 +8,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" href="../assets/icon.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;800&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="blog.css" />
 </head>
 
 <body id="page-post">
 
-  <!-- ══ NAV ══════════════════════════════════════════════════════ -->
-  <nav>
-    <a class="nav-back" href="index.html">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 18 9 12 15 6" />
-      </svg>
-      Volver al blog
-    </a>
-    <span class="nav-brand mono">Isaac Muñoz</span>
-  </nav>
+  <script src="../nav.js"></script>
 
-  <!-- ══ CONTENIDO DEL POST ════════════════════════════════════════ -->
   <article class="post-page">
 
-    <!-- Header del post -->
     <header class="post-hero" id="post-hero">
       <div id="post-meta" class="post-page-meta"></div>
       <h1 id="post-title" class="post-page-title"></h1>
       <div id="post-tags" class="post-tags"></div>
     </header>
 
-    <!-- Cuerpo del post (HTML desde data.js) -->
     <div id="post-body" class="post-body"></div>
 
-    <!-- Navegación anterior/siguiente -->
     <nav id="post-nav" class="post-nav" aria-label="Navegación entre posts"></nav>
 
     <section class="comments-section">
       <h2>Comentarios</h2>
       <div id="comments-container">
-        <script src="https://utteranc.es/client.js" repo="rgkue/rgkue.github.io" issue-term="url" theme="github-dark"
-          crossorigin="anonymous" async>
-          </script>
+        <script src="https://utteranc.es/client.js" repo="rgkue/rgkue.github.io" issue-term="url" theme="github-dark" crossorigin="anonymous" async></script>
       </div>
     </section>
 

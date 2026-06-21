@@ -228,14 +228,14 @@ function renderServices() {
 
   const cta = document.createElement('div');
   cta.className = 'services-cta fade-up';
-  cta.innerHTML = `<a class="services-cta-btn" href="services/services.html">Ver servicios completos</a>`;
+  cta.innerHTML = `<a class="services-cta-btn" href="services/">Ver servicios completos</a>`;
   container.appendChild(cta);
 }
 
 // ─── HABILIDADES ──────────────────────────────────────────────────
 function renderSkills() {
   const cvLink = document.getElementById('cv-link');
-  if (cvLink) { cvLink.href = PORTFOLIO.cv; cvLink.download = 'cv-isaac-munoz.pdf'; }
+  if (cvLink) { cvLink.href = PORTFOLIO.cv; cvLink.download = 'IsaacMunoz_CV.pdf'; }
 
   const container = document.getElementById('skills-grid');
   if (!container) return;
@@ -277,17 +277,14 @@ function renderExperience() {
   if (!container) return;
   PORTFOLIO.experience.forEach(exp => {
     const card = document.createElement('div');
-    card.className = 'exp-card fade-up';
+    card.className = 'edu-card fade-up';
     const companyHtml = exp.companyUrl ? `<a href="${exp.companyUrl}" target="_blank" rel="noopener noreferrer">${exp.company}</a>` : exp.company;
     card.innerHTML = `
-      <div class="exp-bar ${exp.current ? 'current' : ''}"></div>
-      <div class="exp-content">
-        <div class="exp-header">
-          <div class="exp-role">${exp.role}</div>
-          <div class="exp-period">${exp.period}</div>
-        </div>
-        <div class="exp-company">${companyHtml}</div>
-        <div class="exp-desc">${exp.description}</div>
+      <div class="edu-bar ${exp.current ? 'current' : ''}"></div>
+      <div class="edu-content">
+        <div class="edu-degree">${exp.role}</div>
+        <div class="edu-institution">${companyHtml}</div>
+        <div class="edu-period">${exp.period}</div>
       </div>
     `;
     container.appendChild(card);
@@ -331,6 +328,135 @@ function renderBlogPreview() {
   });
 }
 
+// ─── EXPLORAR (cards de nav) ──────────────────────────────────────
+function renderExplore() {
+  const container = document.getElementById('explore-cards');
+  if (!container) return;
+
+  const navPages = [
+    {
+      label: 'Projects',
+      href:  'projects/',
+      desc:  'Repositorios, labs y prototipos',
+      icon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`,
+    },
+    {
+      label: 'Writeups',
+      href:  'writeups/',
+      desc:  'CTFs resueltos en HTB, THM y DockerLabs',
+      icon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    },
+    {
+      label: 'Scripts',
+      href:  'scripts/',
+      desc:  'Herramientas y automatizaciones en Bash/Python',
+      icon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
+    },
+    {
+      label: 'Services',
+      href:  'services/',
+      desc:  'Soporte técnico y optimización de equipos',
+      icon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><line x1="22" y1="10" x2="16" y2="10"/><line x1="6" y1="10" x2="10" y2="10"/></svg>`,
+    },
+    {
+      label: 'Blog',
+      href:  'blog/',
+      desc:  'Notas técnicas, aprendizajes y posts',
+      icon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    },
+  ];
+
+  navPages.forEach(page => {
+    const a = document.createElement('a');
+    a.className = 'explore-card fade-up';
+    a.href = page.href;
+    a.innerHTML = `
+      <div class="explore-card-icon">${page.icon}</div>
+      <div class="explore-card-body">
+        <div class="explore-card-label">${page.label}</div>
+        <div class="explore-card-desc">${page.desc}</div>
+      </div>
+      <div class="explore-card-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </div>
+    `;
+    container.appendChild(a);
+  });
+}
+
+// ─── CHIPS "SOBRE MÍ" ─────────────────────────────────────────────
+function renderAboutChips() {
+  const container = document.getElementById('about-chips');
+  if (!container) return;
+
+  // Chips: mezcla de herramientas clave y skills destacados
+  const chips = [
+    'Bash', 'Python', 'Linux', 'Kali', 'Nmap',
+    'Burp Suite', 'Docker', 'HackTheBox', 'CTFs', 'Wireshark',
+  ];
+
+  chips.forEach(chip => {
+    const span = document.createElement('span');
+    span.className = 'about-chip';
+    span.textContent = chip;
+    container.appendChild(span);
+  });
+}
+
+// ─── CHIPS HABILIDADES + CERTIFICACIONES (sección trayectoria) ───
+function renderBgSkillsChips() {
+  const container = document.getElementById('bg-skills-chips');
+  if (!container) return;
+
+  // Columna izquierda: skillHighlights → array plano de { label }
+  function buildSkillsCard() {
+    const card = document.createElement('div');
+    card.className = 'hl-single-card fade-up';
+    const listHtml = (PORTFOLIO.skillHighlights || []).map(item =>
+      `<li class="hl-item"><span class="hl-arrow">›</span>${item.label}</li>`
+    ).join('');
+    card.innerHTML = `
+      <div class="hl-single-title">Habilidades</div>
+      <ul class="hl-single-list">${listHtml}</ul>
+    `;
+    return card;
+  }
+
+  // Columna derecha: certHighlights → array plano de { label, url? }
+  function buildCertsCard() {
+    const card = document.createElement('div');
+    card.className = 'hl-single-card fade-up';
+    const listHtml = (PORTFOLIO.certHighlights || []).map(item => {
+      const inner = item.url
+        ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.label}</a>`
+        : item.label;
+      return `<li class="hl-item"><span class="hl-arrow">›</span>${inner}</li>`;
+    }).join('');
+    card.innerHTML = `
+      <div class="hl-single-title">Certificaciones</div>
+      <ul class="hl-single-list">${listHtml}</ul>
+    `;
+    return card;
+  }
+
+  const wrap = document.createElement('div');
+  wrap.className = 'hl-two-col';
+
+  const leftCol = document.createElement('div');
+  leftCol.className = 'hl-col';
+  leftCol.appendChild(buildSkillsCard());
+
+  const rightCol = document.createElement('div');
+  rightCol.className = 'hl-col';
+  rightCol.appendChild(buildCertsCard());
+
+  wrap.appendChild(leftCol);
+  wrap.appendChild(rightCol);
+  container.appendChild(wrap);
+}
+
 // ─── FOOTER ───────────────────────────────────────────────────────
 function renderFooter() {
   const social = document.getElementById('footer-social');
@@ -351,8 +477,11 @@ function renderFooter() {
     });
   }
   const copy = document.getElementById('footer-copy');
-  if (copy) copy.innerHTML = `$ <span>${PORTFOLIO.alias}</span> · ${new Date().getFullYear()}`;
-}
+  if (copy) copy.innerHTML = `$ <span>${PORTFOLIO.alias}</span> · ${new Date().getFullYear() }`;
+  }
+
+  const cop = document.getElementById('footer-cop');
+  if (cop) cop.innerHTML = `Copyright © ${new Date().getFullYear()} Isaac Muñoz. Todos los derechos reservados.`;
 
 // ─── SCROLL OBSERVER ──────────────────────────────────────────────
 function initScrollObserver() {
@@ -367,12 +496,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initStars();
   renderHero();
   renderCarousel();
-  renderProjects();
-  renderServices();
-  renderBlogPreview();
-  renderSkills();
+  renderExplore();
+  renderAboutChips();
   renderEducation();
   renderExperience();
+  renderBgSkillsChips();
+  //renderSkills();   // aún actualiza el cv-link
   renderFooter();
   setTimeout(initScrollObserver, 80);
 });

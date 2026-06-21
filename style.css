@@ -150,12 +150,19 @@ section { position: relative; z-index: 1; }
 /* ─── SECTION LABEL ──────────────────────────────────────── */
 .section-label {
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em;
-  color: var(--text-muted); text-align: center; padding: 3rem 0 2rem; text-transform: uppercase;
+  color: var(--text-muted); text-align: center; padding: 4rem 0 3rem; text-transform: uppercase;
 }
 .section-label span {
   display: inline-block; padding: 0.3rem 1rem;
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
 }
+
+/* section-label compacto para títulos dentro de columnas */
+.bg-skills .section-label,
+.bg-two-col .section-label {
+  padding: 1.5rem 0 1.25rem;
+}
+
 
 /* ─── CARRUSEL ───────────────────────────────────────────── */
 #tools { padding-bottom: 4rem; overflow: hidden; }
@@ -194,6 +201,93 @@ section { position: relative; z-index: 1; }
   display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
 }
 .tool-card span { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); text-align: center; }
+
+/* ─── EXPLORAR + SOBRE MÍ ────────────────────────────────── */
+#explore-about { padding-bottom: 5rem; }
+
+.explore-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.col-label {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 1rem;
+}
+
+/* — Explore cards — */
+.explore-cards { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.explore-card {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); text-decoration: none; color: inherit;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.explore-card:hover {
+  border-color: var(--green-dim); background: var(--bg-card-2);
+  transform: translateX(4px); opacity: 1;
+}
+.explore-card:hover .explore-card-icon { color: var(--green); }
+.explore-card:hover .explore-card-arrow { color: var(--green); opacity: 1; }
+
+.explore-card-icon {
+  color: var(--text-muted); flex-shrink: 0;
+  transition: color 0.2s;
+  display: flex; align-items: center;
+}
+.explore-card-body { flex: 1; min-width: 0; }
+.explore-card-label {
+  font-family: var(--mono); font-size: 0.82rem; font-weight: 700;
+  color: #fff; margin-bottom: 0.15rem;
+}
+.explore-card-desc { font-size: 0.78rem; color: var(--text-dim); }
+.explore-card-arrow { color: var(--text-muted); opacity: 0.4; flex-shrink: 0; transition: color 0.2s, opacity 0.2s; }
+
+/* — About card — */
+.about-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.75rem;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.about-text { font-size: 0.88rem; color: var(--text-dim); line-height: 1.75; }
+.about-text strong { color: var(--green); font-weight: 600; }
+.about-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+.about-chip {
+  font-family: var(--mono); font-size: 0.68rem;
+  padding: 0.2rem 0.65rem; border-radius: 999px;
+  background: var(--green-glow); border: 1px solid var(--border);
+  color: var(--green-dim); letter-spacing: 0.03em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.about-chip:hover { border-color: var(--green-dim); color: var(--green); }
+
+/* — Responsive explore-about — */
+@media (max-width: 768px) {
+  .explore-about-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── TRAYECTORIA (edu + exp + cv) ──────────────────────── */
+#background { padding-bottom: 5rem; }
+
+.background-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.bg-col { display: flex; flex-direction: column; gap: 1rem; }
+.bg-col-cv { min-width: 220px; }
+
+@media (max-width: 900px) {
+  .background-grid { grid-template-columns: 1fr; }
+  .bg-col-cv { min-width: unset; }
+}
 
 /* ─── PROYECTOS ──────────────────────────────────────────── */
 #projects { padding-bottom: 5rem; }
@@ -334,6 +428,198 @@ section { position: relative; z-index: 1; }
 .skill-list li { font-size: 0.83rem; color: var(--text-dim); display: flex; align-items: center; gap: 0.5rem; }
 .skill-list li::before { content:'›'; color: var(--green); font-size:1rem; line-height:1; flex-shrink:0; }
 
+/* ─── TRAYECTORIA — dos columnas ────────────────────────── */
+.bg-skills {
+  display: flex; flex-direction: column; gap: 0.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Highlight cards grid ── */
+.bg-chips-wrap {
+  /* layout manejado por .hl-two-col dentro */
+}
+
+.hl-card {
+  --hl-accent: var(--green);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem 1.2rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  position: relative; overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+/* barra lateral de color */
+.hl-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--hl-accent);
+  opacity: 0.8;
+  transition: opacity 0.25s;
+}
+/* glow sutil en hover */
+.hl-card:hover {
+  border-color: var(--hl-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px -6px color-mix(in srgb, var(--hl-accent) 20%, transparent);
+}
+.hl-card:hover::before { opacity: 1; }
+
+.hl-header {
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.hl-icon {
+  font-size: 1.15rem; line-height: 1; flex-shrink: 0;
+}
+.hl-label {
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 700;
+  color: #fff; letter-spacing: 0.02em;
+}
+
+.hl-list {
+  list-style: none; display: flex; flex-direction: column; gap: 0.35rem;
+}
+.hl-item {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  font-size: 0.78rem; color: var(--text-dim); line-height: 1.4;
+}
+.hl-dot {
+  width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+  background: var(--hl-accent);
+  opacity: 0.7;
+  margin-top: 0.3rem;
+  transition: opacity 0.2s;
+}
+.hl-card:hover .hl-dot { opacity: 1; }
+
+
+/* ── Dos columnas 1:1 habilidades / certificaciones ── */
+.hl-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.hl-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hl-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .hl-two-col { grid-template-columns: 1fr; }
+}
+
+/* ── Card única habilidades / certificaciones ── */
+.hl-single-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.hl-single-title {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.hl-single-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.hl-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.hl-arrow {
+  color: var(--green);
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+
+.bg-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  
+
+/* ── Card única habilidades / certificaciones ── */
+.hl-single-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.hl-single-title {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.hl-single-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.hl-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.hl-arrow {
+  color: var(--green);
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+
+.bg-two-col { grid-template-columns: 1fr; }
+}
+
 /* ─── EDUCACIÓN ──────────────────────────────────────────── */
 #education { padding-bottom: 5rem; }
 #education .container { display: flex; flex-direction: column; gap: 1rem; }
@@ -357,7 +643,27 @@ section { position: relative; z-index: 1; }
 /* ─── EXPERIENCIA ────────────────────────────────────────── */
 #experience { padding-bottom: 5rem; }
 #experience .container { display: flex; flex-direction: column; gap: 1rem; }
-.section-sub { font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim); padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); margin-bottom: 0.5rem; }
+.section-sub {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 3rem 0 2.5rem;
+  display: block;
+  width: 100%;
+}
+.section-sub::after {
+  content: attr(data-text);
+}
+/* Wrapper visual: línea arriba y abajo como .section-label */
+.section-sub-inner {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
 
 .exp-card {
   display: grid; grid-template-columns: 3px 1fr;
@@ -451,9 +757,35 @@ footer {
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .explore-about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .bg-two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hl-two-col { grid-template-columns: 1fr; gap: 1rem; }
+}
+
 @media (max-width: 640px) {
   .skills-grid, .category-body, .services-grid, .blog-preview-grid { grid-template-columns: 1fr; }
   .hero-name { font-size: 1.8rem; letter-spacing: 0.08em; }
+
+  /* Container */
+  .container { padding: 0 1rem; }
+
+  /* Hero */
+  #hero { padding: 4.5rem 1.25rem 3rem; gap: 1rem; }
+  .hero-tagline { font-size: 0.8rem; }
+  .btn-social { padding: 0.45rem 0.9rem; font-size: 0.78rem; }
+
+  /* Section labels */
+  .section-label { padding: 2.5rem 0 2rem; }
+
+  /* CV card */
+  .cv-card { padding: 1.75rem 1.25rem; }
+
+  /* Edu / exp cards */
+  .edu-content { padding: 1rem 1rem 1rem 0; }
+
+  /* Footer */
+  footer { padding: 2rem 1rem; }
 }
 
 /* ─── FADE-IN AL SCROLL ──────────────────────────────────── */

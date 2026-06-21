@@ -44,19 +44,30 @@ function renderCard(post) {
   card.setAttribute('role', 'button');
   card.setAttribute('tabindex', '0');
 
+  const imgSrc = post.cover
+    ? post.cover
+    : `https://opengraph.githubassets.com/1/rgkue/${post.id}`;
+
   card.innerHTML = `
-    <div class="post-meta">
-      <span class="post-cat-badge">${post.category}</span>
-      <span class="post-date">${formatDate(post.date)}</span>
-    </div>
-    <div class="post-title">${post.title}</div>
-    <div class="post-excerpt">${post.excerpt}</div>
-    <div class="post-tags">
-      ${post.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-    </div>
-    <div class="post-footer">
-      <span>${post.tags.length} etiquetas</span>
-      <span class="read-more">Leer más →</span>
+    <div class="post-card-inner">
+      <div class="post-card-info">
+        <div class="post-meta">
+          <span class="post-cat-badge">${post.category}</span>
+          <span class="post-date">${formatDate(post.date)}</span>
+        </div>
+        <div class="post-title">${post.title}</div>
+        <div class="post-excerpt">${post.excerpt}</div>
+        <div class="post-tags">
+          ${post.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+        <div class="post-footer">
+          <span>${post.tags.length} etiquetas</span>
+          <span class="read-more">Leer más →</span>
+        </div>
+      </div>
+      <div class="post-thumb-wrap">
+        <img class="post-thumb" src="${imgSrc}" alt="${post.title}" loading="lazy" onerror="this.src='https://opengraph.githubassets.com/1/rgkue/rgkue.github.io'" />
+      </div>
     </div>
   `;
 
@@ -80,7 +91,7 @@ function renderGrid() {
   if (posts.length === 0) {
     grid.innerHTML = `
       <div class="empty-state">
-        <span class="empty-icon">🔍</span>
+        
         <strong>Sin resultados</strong>
         <span>Intenta con otra búsqueda o categoría.</span>
       </div>
@@ -139,7 +150,7 @@ function renderTimeline() {
   });
 
   if (posts.length === 0) {
-    tl.innerHTML = `<div class="empty-state"><span class="empty-icon">📅</span><span>Sin posts que mostrar.</span></div>`;
+    tl.innerHTML = `<div class="empty-state"><span>Sin posts que mostrar.</span></div>`;
   }
 }
 
@@ -242,12 +253,12 @@ function initViewToggle() {
       tl.classList.remove('visible');
       grid.style.display = 'flex';
       tlBtn.classList.remove('active');
-      tlBtn.textContent = '📅 Ver línea de tiempo';
+      tlBtn.textContent = 'Ver línea de tiempo';
     } else {
       grid.style.display = 'none';
       tl.classList.add('visible');
       tlBtn.classList.add('active');
-      tlBtn.textContent = '⊞ Ver grilla';
+      tlBtn.textContent = 'Ver grilla';
       renderTimeline();
     }
   });
@@ -274,6 +285,7 @@ function initReset() {
 // ── INIT INDEX ────────────────────────────────────────────────────
 
 function initIndex() {
+  renderRightPanel();
   renderRecent();
   renderCategories();
   renderGrid();
@@ -307,7 +319,7 @@ function initPost() {
   }
 
   // Título de la pestaña
-  document.title = `${post.title} — rgkue blog`;
+  document.title = `${post.title} - blog`;
 
   // Meta
   const metaEl = document.getElementById('post-meta');
@@ -365,3 +377,23 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.body.id === 'page-index') initIndex();
   if (document.body.id === 'page-post') initPost();
 });
+
+// ── PANEL DERECHO: stats ──────────────────────────────────────
+function renderRightPanel() {
+  const totalEl = document.getElementById('stat-total');
+  if (totalEl) totalEl.textContent = BLOG.posts.length;
+
+  const catStats = document.getElementById('cat-stats');
+  if (!catStats) return;
+  catStats.innerHTML = '';
+
+  const counts = {};
+  BLOG.posts.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
+
+  Object.entries(counts).sort((a, b) => b[1] - a[1]).forEach(([cat, n]) => {
+    const row = document.createElement('div');
+    row.className = 'cstat-row';
+    row.innerHTML = `<span>${cat.trim()}</span><span class="cstat-num mono">${n}</span>`;
+    catStats.appendChild(row);
+  });
+}

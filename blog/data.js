@@ -30,41 +30,7 @@ const BLOG = {
   // ⚠ Orden: más reciente primero.
   posts: [
 
-    {
-      id: "visita-dell-technologies",
-      title: "Visita a DELL Technologies",
-      date: "2026-04-20",
-      category: "Eventos",
-      tags: ["DELL", "DataCenter", "Infraestructura"],
-      excerpt: "En mi segundo año de bachillerato, tuve la oportunidad de visitar el centro de datos de DELL Technologies en Panamá",
-      cover: "assets/dell-datacenter.jpeg",
-      content: `
-        <p>
-        Hace 2 años, cuando estaba en mi segundo año de bachillerato, tuve la oportunidad de visitar el centro de datos de DELL Technologies en Panamá, 
-        y me pareció increíble ver de cerca la infraestructura que soporta operaciones empresariales a gran escala.
-        </p>
-
-        <h2>¿Qué vimos?</h2>
-        <p>El recorrido incluyó:</p>
-        <ul>
-          <li>Charla y explicación sobre los Data Centers y la refrigeración dentro de ellos.</li>
-          <li>Medidas de seguridad en los Data Centers.</li>
-          <li>Servicio de soporte técnico de Dell y como funciona.</li>
-          <li>Personal de Dell laborando en el centro sus oficinas.</li>
-          <li>Charla sobre ciberseguridad</li>
-        </ul>
-
-        <h2>Lo que aprendí</h2>
-        <p>
-        Esta fue mi primera vez en un centro de datos, y mi primer roce con la infraestructura y la ciberseguridad.
-        En esta visita aprendí sobre la importancia de la redundancia y la alta disponibilidad en los centros de datos.
-        También aprendí sobre la importancia de la ciberseguridad física así como la capacitación del personal.
-        </p>
-
-      
-      `,
-    },
-    {
+        {
       id: "ekogroup-2026",
       title: "EkoGroup 2026",
       date: "2026-04-18",
@@ -100,6 +66,40 @@ const BLOG = {
         Siempre buscando el conocimiento constante y en el bien común.
         ¡Nunca paren de aprender!
         </p>
+      `,
+    },
+    {
+      id: "visita-dell-technologies",
+      title: "Visita a DELL Technologies",
+      date: "2026-04-20",
+      category: "Eventos",
+      tags: ["DELL", "DataCenter", "Infraestructura"],
+      excerpt: "En mi segundo año de bachillerato, tuve la oportunidad de visitar el centro de datos de DELL Technologies en Panamá",
+      cover: "assets/dell-datacenter.jpeg",
+      content: `
+        <p>
+        Hace 2 años, cuando estaba en mi segundo año de bachillerato, tuve la oportunidad de visitar el centro de datos de DELL Technologies en Panamá, 
+        y me pareció increíble ver de cerca la infraestructura que soporta operaciones empresariales a gran escala.
+        </p>
+
+        <h2>¿Qué vimos?</h2>
+        <p>El recorrido incluyó:</p>
+        <ul>
+          <li>Charla y explicación sobre los Data Centers y la refrigeración dentro de ellos.</li>
+          <li>Medidas de seguridad en los Data Centers.</li>
+          <li>Servicio de soporte técnico de Dell y como funciona.</li>
+          <li>Personal de Dell laborando en el centro sus oficinas.</li>
+          <li>Charla sobre ciberseguridad</li>
+        </ul>
+
+        <h2>Lo que aprendí</h2>
+        <p>
+        Esta fue mi primera vez en un centro de datos, y mi primer roce con la infraestructura y la ciberseguridad.
+        En esta visita aprendí sobre la importancia de la redundancia y la alta disponibilidad en los centros de datos.
+        También aprendí sobre la importancia de la ciberseguridad física así como la capacitación del personal.
+        </p>
+
+      
       `,
     },
     {

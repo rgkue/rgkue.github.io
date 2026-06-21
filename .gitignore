@@ -7,7 +7,13 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 .gitignore
-README.md
+.dist
+.vscode/
+.git
+admin-panel/
+*.txt
+__pycache__*
+*.pyc
 
 # Additional Ruby/bundler ignore for when you run: bundle install
 /vendor

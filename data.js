@@ -4,7 +4,7 @@ const PORTFOLIO = {
   alias: "rgkue",
   tagline: "Building to learn. Learning to build.",
   photo: "assets/photo.jpg",
-  cv: "assets/IsaacMunoz.pdf",
+  cv: "assets/IsaacMunoz_CV.pdf",
   icon: "assets/icon.png",
   publicidad: "assets/servicios.png",
 
@@ -32,92 +32,6 @@ const PORTFOLIO = {
     { name: "Metasploit", emoji: "💀", iconUrl: "https://www.kali.org/images/tool-logo-metasploit.svg", url: "https://www.metasploit.com/" },
     { name: "Wireshark", emoji: "🕷️", iconUrl: "https://www.kali.org/images/tool-logo-wireshark.svg", url: "https://www.wireshark.org/" },
     { name: "FastAPI", emoji: "⚡", iconUrl: "https://fastapi.tiangolo.com/img/favicon.png", url: "https://fastapi.tiangolo.com/" },
-  ],
-
-  // ─── PROYECTOS ────────────────────────────────────────────
-  projects: [
-    {
-      category: "Projects",
-      icon: "🌐",
-      items: [
-        {
-          title: "Servidor Ubuntu como Router Domestico",
-          description: "Configuración de Ubuntu Server como router/access point editando archivos del sistema, con monitoreo de tráfico en red local y resolución de DNS mediante scripts Bash.",
-          tags: ["Ubuntu", "Linux", "Networking", "Bash", "Router"],
-          status: "done",
-          repo: "https://github.com/rgkue/ubuntuserver-router",
-        },
-        {
-          title: "Sitio web personal - Portafolio Profesional",
-          description: "Desarrollo de este portafolio personal utilizando HTML, CSS y JavaScript para mostrar proyectos, habilidades y experiencia profesional de forma clara y atractiva",
-          tags: ["HTML", "CSS", "JavaScript", "Web Development"],
-          status: "done",
-          repo: "https://github.com/rgkue/rgkue.github.io",
-        },
-        {
-          title: "Shell Colors",
-          description: "Pequeño programa en bash scripting para simular el uso de una shell o terminal.",
-          tags: ["Programming", "Linux", "Terminal", "Shell", "Scripting", "Bash"],
-          status: "in-progress",
-          repo: "https://github.com/rgkue/shell-colors",
-        }
-      ],
-    },
-    {
-      category: "Cybersecurity",
-      icon: "🔒",
-      items: [
-        {
-          title: "Simulación de Ransomware en Windows 7 Home Basic",
-          description: "Laboratorio  de ransomware en entorno controlado contra un sistema operativo Windows 7 Home Basic vulnerable a MS17-010, EternaBlue",
-          tags: ["Python", "Malware", "Educativo", "EternaBlue", "MS17-010", "Ransomware"],
-          status: "done",
-          repo: "https://github.com/rgkue/xcrypto-lab",
-        },
-        {
-          title: "Writeups - Documentación de CTFs en plataformas de pentesting",
-          description: "Repositorio con writeups de máquinas resueltas en  plataformas como HackTheBox, TryHackMe y DockerLabs.",
-          tags: ["CTF", "HTB", "TryHackMe", "DockerLabs", "Pentesting", "Writeups"],
-          status: "done",
-          repo: "https://github.com/rgkue/writeups-pentesting",
-        },
-        {
-          title: "BashCheck",
-          description: "Herramienta de línea de comandos para la rápida verificación de hashes en archivos y exportación masiva de activos digitales",
-          tags: ["Bash", "Programming", "BashScripting", "Linux"],
-          status: "done",
-          repo: "https://github.com/rgkue/bashcheck",
-        },
-      ],
-    },
-  ],
-
-  // ─── HABILIDADES ──────────────────────────────────────────
-  skills: [
-    {
-      category: "Sistemas Operativos",
-      items: ["Windows 10/11 & Windows Server", "Linux (Ubuntu Server, Kali, Debian)", "Administración básica de sistemas", "Instalación y configuración de software"],
-    },
-    {
-      category: "Redes",
-      items: ["Configuración de redes LAN", "Troubleshooting de redes", "Diagnósticos de redes", "Instalación de servidores locales"],
-    },
-    {
-      category: "Ciberseguridad",
-      items: ["Hack The Box", "TryHackMe", "CTFs", "Análisis de vulnerabilidades"],
-    },
-    {
-      category: "Técnicas",
-      items: ["Soporte técnico remoto y en sitio", "Python básico", "XAMPP", "Lenguaje SQL", "Automatización de tareas"],
-    },
-    {
-      category: "Soft Skills",
-      items: ["Resolución de problemas", "Aprendizaje autodidacta", "Trabajo bajo presión", "Comunicación técnica", "Zoho Desk"],
-    },
-    {
-      category: "Certificaciones",
-      items: ["CCNA: Introduction to Networks", "Amazon  Web Services (AWS): Foundations", "Linux Essentials: NDG", "Ethical Hacker: Cisco Networking Academy"],
-    },
   ],
 
   // ─── EDUCACIÓN ────────────────────────────────────────────
@@ -154,41 +68,36 @@ const PORTFOLIO = {
     },
   ],
 
-  // ─── SERVICIOS ────────────────────────────────────────────
-  servicesPage: {
-    title: "Soporte Técnico",
-    subtitle: "Diagnóstico, limpieza y optimización de equipos Windows. Atención remota vía AnyDesk o presencial en Ciudad de Panamá.",
-    image: "assets/servicios.png",
-    imageAlt: "Soporte técnico y servicios de optimización de equipos",
-    contactNote: "Los precios varían según la complejidad del trabajo.",
-    contactButtons: [
-      { label: "WhatsApp", emoji: "💬", url: "https://wa.link/62jnc7" },
-    ],
-  },
-
-  services: [
-    {
-      icon: "🖥️",
-      title: "Diagnóstico de equipo",
-      description: "Revisión completa del estado del hardware y software. Identificación de problemas de rendimiento, fallos, sobrecalentamiento y errores del sistema.",
-      tags: ["Windows", "Hardware", "Software"],
-      badge: "Remoto · Presencial",
-    },
-    {
-      icon: "🧹",
-      title: "Limpieza y optimización",
-      description: "Limpieza de archivos temporales, programas innecesarios al inicio, malware y optimización general para mejorar el rendimiento del equipo.",
-      tags: ["Windows", "Malware", "Rendimiento"],
-      badge: "Remoto · Presencial",
-    },
-    {
-      icon: "📚",
-      title: "Tareas académicas de tecnología",
-      description: "Apoyo en tareas de sistemas, redes informáticas, cuestionarios, investigaciones y configuración en Packet Tracer. Solución con explicación incluida.",
-      tags: ["Redes", "Sistemas", "Packet Tracer", "Python"],
-      badge: "Remoto · Presencial",
-    },
+  
+  // ─── HIGHLIGHTS (sección habilidades en index) ───────────
+  // skillHighlights → columna izquierda (10 items planos)
+  // certHighlights  → columna derecha  (10 items, url opcional)
+  skillHighlights: [
+    { label: "Linux - Ubuntu, Kali, Fedora" },
+    { label: "Windows 10/11 & Server, Windows Dr. Lite" },
+    { label: "Instalación y configuración de software" },
+    { label: "Configuración de redes LAN" },
+    { label: "Troubleshooting de red" },
+    { label: "Wireshark & Analisis de tráfico" },
+    { label: "Nmap & herramientas de seguridad ofensiva" },
+    { label: "Python & Bash Scripting" },
+    { label: "SQL · XAMPP · LAMP" },
+    { label: "Resolución de problemas & Resiliencia" },
   ],
+
+  certHighlights: [
+    { label: "CCNA: Introduction to Networks - Academia de Cisco de la UTP",                url: "https://www.credly.com/badges/3a6bc368-90a5-4f99-bbb0-1ac28b8c1d04/public_url" },
+    {label: "Computer Hardware Basics - Cisco Networking Academy",                 url: "https://www.credly.com/badges/794a54fc-4342-4cd8-a067-36c04bba2b16/public_url"},
+    { label: "Ethical Hacker - Cisco Networking Academy",                         url: "https://www.credly.com/badges/4505b6b1-b8d9-42e8-86ac-42b2d91a1eed/public_url" },
+    { label: "Linux Essentials: Network Development Group",                  url: "https://www.credly.com/badges/b5448c50-5885-4ff6-88b4-1152f5d412ab/public_url" },
+    { label: "Networking Basics - Cisco Networking Academy",                  url: "https://www.credly.com/badges/80002e0e-2d30-4047-a55f-f3546eb441f3/public_url" },
+    { label: "Introduction to Cybersecurity - Cisco Networking Academy",          url: "" },
+    { label: "AWS Foundations - AWS Academy",                    url: "" },
+    { label: "AWS Security - AWS Academy",                      url: "" },
+    { label: "Junior Cybersecurity Analyst Career Path", url: "" },
+    { label: "Cybersecurity Essentials - Cisco Networking Academy",                      url: "" },
+  ],
+
   // ─── CONTACTO (footer) ────────────────────────────────────
   email: [
     "isaac.munozp2836@gmail.com",
