@@ -101,7 +101,7 @@ const writeupsData = [
 
   // ── TryHackMe ────────────────────────────────────────────────
   {
-     title:       "DumpingRouterFirmware",
+     title:       "Dumping Router Firmware",
      platform:    "TryHackMe",
      difficulty:  "Medium",
      date:        "2026-05-23",
