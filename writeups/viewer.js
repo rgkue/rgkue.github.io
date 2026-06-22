@@ -46,10 +46,10 @@ document.getElementById("meta-diff").className       = `meta-diff ${diffClass(di
 
 // ── Cargar y renderizar Markdown ──────────────────────────────
 async function loadWriteup() {
-  // Construir URL absoluta con cada segmento codificado
-  const base    = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/");
+  // Usar raw.githubusercontent para evitar caché del CDN de GitHub Pages
+  const rawBase = "https://raw.githubusercontent.com/rgkue/rgkue.github.io/main/writeups/";
   const encoded = path.split("/").map(encodeURIComponent).join("/");
-  const mdUrl   = `${base}${encoded}/README.md`;
+  const mdUrl   = `${rawBase}${encoded}/README.md`;
   const loading = document.getElementById("md-loading");
   const body    = document.getElementById("md-body");
 
@@ -61,7 +61,7 @@ async function loadWriteup() {
     // Reescribir rutas de imágenes usando URL absoluta codificada
     markdown = markdown.replace(
       /!\[([^\]]*)\]\(media\//g,
-      `![$1](${base}${encoded}/media/`
+      `![$1](${rawBase}${encoded}/media/`
     );
 
     // Configurar marked
