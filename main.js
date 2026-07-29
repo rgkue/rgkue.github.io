@@ -195,43 +195,6 @@ function renderProjects() {
   });
 }
 
-// ─── SERVICIOS ────────────────────────────────────────────────────
-function renderServices() {
-  const container = document.getElementById('services-content');
-  if (!container) return;
-
-  if (!PORTFOLIO.services || PORTFOLIO.services.length === 0) {
-    container.innerHTML = `
-      <div class="services-coming">
-        <span class="coming-icon">🚧</span>
-        <strong>Próximamente</strong>
-        <span>Esta sección está en desarrollo.</span>
-      </div>
-    `;
-  } else {
-    const grid = document.createElement('div');
-    grid.className = 'services-grid';
-
-    PORTFOLIO.services.forEach(srv => {
-      const card = document.createElement('div');
-      card.className = 'service-card fade-up';
-      card.innerHTML = `
-        <div class="service-icon">${srv.icon}</div>
-        <div class="service-title">${srv.title}</div>
-        <div class="service-desc">${srv.description}</div>
-      `;
-      grid.appendChild(card);
-    });
-
-    container.appendChild(grid);
-  }
-
-  const cta = document.createElement('div');
-  cta.className = 'services-cta fade-up';
-  cta.innerHTML = `<a class="services-cta-btn" href="services/">Ver servicios completos</a>`;
-  container.appendChild(cta);
-}
-
 // ─── HABILIDADES ──────────────────────────────────────────────────
 function renderSkills() {
   const cvLink = document.getElementById('cv-link');
@@ -353,10 +316,10 @@ function renderExplore() {
       icon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
     },
     {
-      label: 'Services',
-      href:  'services/',
-      desc:  'Soporte técnico y optimización de equipos',
-      icon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><line x1="22" y1="10" x2="16" y2="10"/><line x1="6" y1="10" x2="10" y2="10"/></svg>`,
+      label: 'Certifications',
+      href:  'certifications/',
+      desc:  'Certificaciones de Cisco, AWS y más',
+      icon:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>`,
     },
     {
       label: 'Blog',

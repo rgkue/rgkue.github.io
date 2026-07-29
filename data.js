@@ -86,16 +86,16 @@ const PORTFOLIO = {
   ],
 
   certHighlights: [
-    { label: "CCNA: Introduction to Networks - Academia de Cisco de la UTP",                url: "https://www.credly.com/badges/3a6bc368-90a5-4f99-bbb0-1ac28b8c1d04/public_url" },
-    {label: "Computer Hardware Basics - Cisco Networking Academy",                 url: "https://www.credly.com/badges/794a54fc-4342-4cd8-a067-36c04bba2b16/public_url"},
-    { label: "Ethical Hacker - Cisco Networking Academy",                         url: "https://www.credly.com/badges/4505b6b1-b8d9-42e8-86ac-42b2d91a1eed/public_url" },
-    { label: "Linux Essentials: Network Development Group",                  url: "https://www.credly.com/badges/b5448c50-5885-4ff6-88b4-1152f5d412ab/public_url" },
-    { label: "Networking Basics - Cisco Networking Academy",                  url: "https://www.credly.com/badges/80002e0e-2d30-4047-a55f-f3546eb441f3/public_url" },
-    { label: "Introduction to Cybersecurity - Cisco Networking Academy",          url: "" },
-    { label: "AWS Foundations - AWS Academy",                    url: "" },
-    { label: "AWS Security - AWS Academy",                      url: "" },
-    { label: "Junior Cybersecurity Analyst Career Path", url: "" },
-    { label: "Cybersecurity Essentials - Cisco Networking Academy",                      url: "" },
+    { label: "CCNA: Introduction to Networks - Academia de Cisco de la UTP" },
+    { label: "Computer Hardware Basics - Cisco Networking Academy" },
+    { label: "Ethical Hacker - Cisco Networking Academy" },
+    { label: "Linux Essentials: Network Development Group" },
+    { label: "Networking Basics - Cisco Networking Academy" },
+    { label: "Introduction to Cybersecurity - Cisco Networking Academy" },
+    { label: "AWS Foundations - AWS Academy" },
+    { label: "AWS Security - AWS Academy" },
+    { label: "Junior Cybersecurity Analyst Career Path" },
+    { label: "Cybersecurity Essentials - Cisco Networking Academy" },
   ],
 
   // ─── CONTACTO (footer) ────────────────────────────────────

@@ -55,7 +55,20 @@ const portfolioData = {
         },
       ],
     },
-/*    {
+    {
+      category: "Development",
+      icon: "💻",
+      items: [
+        {
+          title: "Proyecto CRUD en Python con Flask y SQLite usando una API REST",
+          description: "Desarrollo de un servidor y un cliente dedicado con interfaz CLI/GUI para la consulta y gestión de datos en una base de datos SQLite mediante una API REST.",
+          tags: ["Python", "Automation", "Development", "Flask", "SQLite", "REST API"],
+          status: "done",
+          repo: "https://github.com/rgkue/rest-api",
+        },
+      ],
+    },
+    /*    {
       category: "Networking",
       icon: "🌐",
       items: [
@@ -81,19 +94,6 @@ const portfolioData = {
         },
       ],
     },
-    {
-      category: "Development",
-      icon: "💻",
-      items: [
-        {
-          title: "Automatización de Tareas con Python",
-          description: "Desarrollo de scripts en Python para automatizar tareas repetitivas y mejorar la eficiencia en el trabajo diario.",
-          tags: ["Python", "Automation", "Scripting"],
-          status: "in-progress",
-          repo: null,
-        },
-      ],
-    },
-    */
+  */ 
   ]
 };
