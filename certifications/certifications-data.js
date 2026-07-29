@@ -56,13 +56,5 @@ const CERTIFICATIONS_DATA = {
       "url": "https://www.credly.com/badges/3a6bc368-90a5-4f99-bbb0-1ac28b8c1d04/public_url",
       "date": "2026-04"
     },
-    {
-      "id": "testname",
-      "name": "testName",
-      "issuer": "testIssuer",
-      "image": "testImage",
-      "url": "testUrl",
-      "date": "testDate"
-    }
   ]
 };
