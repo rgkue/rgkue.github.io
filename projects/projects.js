@@ -26,6 +26,7 @@ const CAT_IMAGES = {
 };
 
 function thumbFor(proj, catName) {
+  if (proj.image) return proj.image;
   for (const tag of proj.tags) {
     if (TAG_IMAGES[tag]) return TAG_IMAGES[tag];
   }
