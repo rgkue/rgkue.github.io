@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HTC1Y1F39M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HTC1Y1F39M');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trayectoria - Isaac Muñoz</title>
+  <meta name="description" content="Formación académica y experiencia profesional de Isaac Muñoz — Ciberseguridad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../assets/icon.png" />
+  <link rel="stylesheet" href="trajectory.css" />
+</head>
+<body>
+
+  <script src="../nav.js"></script>
+
+  <div class="tr-page">
+
+    <div class="page-header">
+      <span class="page-title">Trayectoria</span>
+    </div>
+
+    <div class="tr-shell">
+
+      <aside class="tr-sidebar-left">
+        <div class="profile">
+          <img class="avatar" src="../assets/photo.jpg" alt="Isaac Muñoz" width="52" height="52" />
+          <div class="profile-text">
+            <span class="profile-name">Isaac Muñoz</span>
+            <span class="profile-handle mono">rgkue</span>
+          </div>
+        </div>
+        <p class="profile-bio">Formación académica y experiencia profesional en ciberseguridad y soporte técnico.</p>
+      </aside>
+
+      <div class="tr-main">
+        <div id="tr-timeline" class="tr-timeline"></div>
+        <div id="tr-empty" class="empty-state" hidden>No hay elementos para mostrar.</div>
+      </div>
+
+      <aside class="tr-sidebar-right">
+        <div class="seg-control seg-control-vertical" id="view-switch" role="tablist">
+          <button class="seg-btn active" data-view="educacion" role="tab">Educación</button>
+          <button class="seg-btn" data-view="experiencia" role="tab">Experiencia</button>
+          <button class="seg-btn" data-view="cronologico" role="tab">Cronología</button>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Footer de herramientas — a propósito FUERA de .tr-page para poder
+       ocupar el ancho completo de la pantalla, no solo la columna de 1120px. -->
+  <section class="tr-tools-footer">
+    <div class="tr-tools-inner">
+      <span class="section-heading">Habilidades &amp; Herramientas</span>
+      <div class="carousel-track-wrap">
+        <div id="carousel-track" class="carousel-track"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="trajectory-data.js"></script>
+  <script src="trajectory.js"></script>
+</body>
+</html>

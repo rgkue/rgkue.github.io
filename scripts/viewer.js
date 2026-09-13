@@ -18,6 +18,7 @@ const lang   = params.get("lang")  || "bash";
 const file   = params.get("file")  || "";
 const repo   = params.get("repo")  || "";
 const desc   = params.get("desc")  || "";
+const demo   = params.get("demo")  || "";
 
 const LANG_COLORS = {
   bash:   "#3ddc84",
@@ -49,6 +50,46 @@ if (repo) {
 // ── Filename en el header del bloque ─────────────────────────
 const filename = file.split("/").pop() || title;
 document.getElementById("sc-filename").textContent = filename;
+
+// ── Captura de ejecución + visor (lightbox) ──────────────────
+const viewerOverlay = document.getElementById("sc-viewer-overlay");
+const viewerImg     = document.getElementById("sc-viewer-img");
+const viewerClose   = document.getElementById("sc-viewer-close");
+
+function openViewer(src, alt) {
+  viewerImg.src = src;
+  viewerImg.alt = alt || "";
+  viewerOverlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeViewer() {
+  viewerOverlay.classList.remove("open");
+  document.body.style.overflow = "";
+  viewerImg.src = "";
+}
+
+viewerClose.addEventListener("click", closeViewer);
+viewerOverlay.addEventListener("click", e => {
+  if (e.target === viewerOverlay) closeViewer();
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeViewer();
+});
+
+if (demo) {
+  const demoBlock    = document.getElementById("sc-demo");
+  const demoImg      = document.getElementById("sc-demo-img");
+  const demoThumbWrap = document.getElementById("sc-demo-thumb-wrap");
+  const demoViewBtn  = document.getElementById("sc-demo-view-btn");
+
+  demoImg.src = demo;
+  demoImg.alt = `Captura de ejecución de ${title}`;
+  demoBlock.style.display = "flex";
+
+  demoThumbWrap.addEventListener("click", () => openViewer(demo, demoImg.alt));
+  demoViewBtn.addEventListener("click", () => openViewer(demo, demoImg.alt));
+}
 
 // ── Cargar y mostrar el script ────────────────────────────────
 async function loadScript() {
@@ -87,7 +128,7 @@ document.getElementById("copy-btn").addEventListener("click", () => {
     const btn = document.getElementById("copy-btn");
     const original = btn.innerHTML;
     btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copiado`;
-    btn.style.color = "var(--green)";
+    btn.style.color = "var(--accent)";
     setTimeout(() => {
       btn.innerHTML = original;
       btn.style.color = "";

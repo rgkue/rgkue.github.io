@@ -103,48 +103,6 @@ function renderHero() {
   });
 }
 
-// ─── CARRUSEL ─────────────────────────────────────────────────────
-function renderCarousel() {
-  const track = document.getElementById('carousel-track');
-  if (!track) return;
-
-  // Duplicamos para el loop infinito
-  const items = [...PORTFOLIO.tools, ...PORTFOLIO.tools];
-
-  items.forEach(tool => {
-    const card = tool.url ? document.createElement('a') : document.createElement('div');
-    card.className = 'tool-card';
-    if (tool.url) {
-      card.href = tool.url;
-      card.target = '_blank';
-      card.rel = 'noopener noreferrer';
-    }
-
-    const ph = document.createElement('div');
-    ph.className = 'tool-icon-placeholder';
-    ph.textContent = tool.emoji || '🔧';
-
-    const label = document.createElement('span');
-    label.textContent = tool.name;
-
-    card.appendChild(ph);
-    card.appendChild(label);
-
-    if (tool.iconUrl) {
-      const img = new Image();
-      img.onload = () => {
-        img.width = 42; img.height = 42; img.alt = tool.name;
-        if (tool.tint) img.classList.add('tinted');
-        ph.replaceWith(img);
-      };
-      img.onerror = () => {}; // mantiene emoji si falla
-      img.src = tool.iconUrl;
-    }
-
-    track.appendChild(card);
-  });
-}
-
 // ─── PROYECTOS ────────────────────────────────────────────────────
 function renderProjects() {
   const container = document.getElementById('projects-list');
@@ -195,45 +153,6 @@ function renderProjects() {
   });
 }
 
-// ─── HABILIDADES ──────────────────────────────────────────────────
-function renderSkills() {
-  const cvLink = document.getElementById('cv-link');
-  if (cvLink) { cvLink.href = PORTFOLIO.cv; cvLink.download = 'IsaacMunoz_CV.pdf'; }
-
-  const container = document.getElementById('skills-grid');
-  if (!container) return;
-  PORTFOLIO.skills.forEach(cat => {
-    const card = document.createElement('div');
-    card.className = 'skill-card fade-up';
-    card.innerHTML = `
-      <div class="skill-cat">${cat.category}</div>
-      <ul class="skill-list">${cat.items.map(i=>`<li>${i}</li>`).join('')}</ul>
-    `;
-    container.appendChild(card);
-  });
-}
-
-// ─── EDUCACIÓN ────────────────────────────────────────────────────
-function renderEducation() {
-  const container = document.getElementById('education-list');
-  if (!container) return;
-  (PORTFOLIO.education || []).forEach(edu => {
-    const card = document.createElement('div');
-    card.className = 'edu-card fade-up';
-    const degreeHtml = edu.url ? `<a href="${edu.url}" target="_blank" rel="noopener noreferrer">${edu.degree}</a>` : edu.degree;
-    const institutionHtml = edu.institutionUrl ? `<a href="${edu.institutionUrl}" target="_blank" rel="noopener noreferrer">${edu.institution}</a>` : edu.institution;
-    card.innerHTML = `
-      <div class="edu-bar ${edu.current ? 'current' : ''}"></div>
-      <div class="edu-content">
-        <div class="edu-degree">${degreeHtml}</div>
-        <div class="edu-institution">${institutionHtml}</div>
-        <div class="edu-period">${edu.period}</div>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-}
-
 // ─── EXPERIENCIA ──────────────────────────────────────────────────
 function renderExperience() {
   const container = document.getElementById('experience-list');
@@ -270,7 +189,9 @@ function renderBlogPreview() {
   }
 
   // Mostrar los 3 posts más recientes
-  const recent = BLOG.posts.slice(0, 3);
+  const recent = [...BLOG.posts]
+  .sort((a, b) => new Date(b.date) - new Date(a.date))
+  .slice(0, 3);
 
   recent.forEach(post => {
     const a = document.createElement('a');
@@ -373,51 +294,17 @@ function renderBgSkillsChips() {
   const container = document.getElementById('bg-skills-chips');
   if (!container) return;
 
-  // Columna izquierda: skillHighlights → array plano de { label }
-  function buildSkillsCard() {
-    const card = document.createElement('div');
-    card.className = 'hl-single-card fade-up';
-    const listHtml = (PORTFOLIO.skillHighlights || []).map(item =>
-      `<li class="hl-item"><span class="hl-arrow">›</span>${item.label}</li>`
-    ).join('');
-    card.innerHTML = `
-      <div class="hl-single-title">Habilidades</div>
-      <ul class="hl-single-list">${listHtml}</ul>
-    `;
-    return card;
-  }
+  const listHtml = (PORTFOLIO.skillHighlights || []).map(item =>
+    `<li class="hl-item"><span class="hl-arrow">›</span>${item.label}</li>`
+  ).join('');
 
-  // Columna derecha: certHighlights → array plano de { label, url? }
-  function buildCertsCard() {
-    const card = document.createElement('div');
-    card.className = 'hl-single-card fade-up';
-    const listHtml = (PORTFOLIO.certHighlights || []).map(item => {
-      const inner = item.url
-        ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.label}</a>`
-        : item.label;
-      return `<li class="hl-item"><span class="hl-arrow">›</span>${inner}</li>`;
-    }).join('');
-    card.innerHTML = `
-      <div class="hl-single-title">Certificaciones</div>
-      <ul class="hl-single-list">${listHtml}</ul>
-    `;
-    return card;
-  }
-
-  const wrap = document.createElement('div');
-  wrap.className = 'hl-two-col';
-
-  const leftCol = document.createElement('div');
-  leftCol.className = 'hl-col';
-  leftCol.appendChild(buildSkillsCard());
-
-  const rightCol = document.createElement('div');
-  rightCol.className = 'hl-col';
-  rightCol.appendChild(buildCertsCard());
-
-  wrap.appendChild(leftCol);
-  wrap.appendChild(rightCol);
-  container.appendChild(wrap);
+  const card = document.createElement('div');
+  card.className = 'hl-single-card fade-up';
+  card.innerHTML = `
+    <div class="hl-single-title">Habilidades</div>
+    <ul class="hl-single-list">${listHtml}</ul>
+  `;
+  container.appendChild(card);
 }
 
 // ─── FOOTER ───────────────────────────────────────────────────────
@@ -441,10 +328,10 @@ function renderFooter() {
   }
   const copy = document.getElementById('footer-copy');
   if (copy) copy.innerHTML = `$ <span>${PORTFOLIO.alias}</span> · ${new Date().getFullYear() }`;
-  }
 
   const cop = document.getElementById('footer-cop');
   if (cop) cop.innerHTML = `Copyright © ${new Date().getFullYear()} Isaac Muñoz. Todos los derechos reservados.`;
+}
 
 // ─── SCROLL OBSERVER ──────────────────────────────────────────────
 function initScrollObserver() {
@@ -458,13 +345,10 @@ function initScrollObserver() {
 document.addEventListener('DOMContentLoaded', () => {
   initStars();
   renderHero();
-  renderCarousel();
   renderExplore();
   renderAboutChips();
-  renderEducation();
   renderExperience();
   renderBgSkillsChips();
-  //renderSkills();   // aún actualiza el cv-link
   renderFooter();
   setTimeout(initScrollObserver, 80);
 });

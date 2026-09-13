@@ -1,22 +1,25 @@
-/* ─── VARIABLES ─────────────────────────────────────────────── */
+/* ─── VARIABLES — misma paleta que el resto del sitio ─────────── */
 :root {
-  --bg:         #080b0a;
-  --bg-card:    #111a13;
-  --bg-card-2:  #172019;
-  --bg-code:    #0a100b;
-  --border:     #243228;
-  --border-dim: #1a2218;
-  --green:      #3ddc84;
-  --green-dim:  #2a9e5e;
-  --green-glow: rgba(61,220,132,0.08);
-  --text:       #d4e8d8;
-  --text-dim:   #8aaa8e;
-  --text-muted: #4e6b55;
-  --diff-hard:  #e06c6c;
+  --bg:         #0d1117;
+  --bg-card:    #161b22;
+  --bg-card-2:  #1c2128;
+  --bg-code:    #0a0d12;
+  --border:     #30363d;
+  --border-dim: #21262d;
+  --accent:      #f5a524;
+  --accent-dim:  #c47e1a;
+  --accent-soft: rgba(245, 165, 36, 0.12);
+  --text:       #e6edf3;
+  --text-dim:   #8b949e;
+  --text-muted: #6e7681;
   --mono:       'JetBrains Mono', 'Fira Code', monospace;
   --sans:       'Inter', system-ui, sans-serif;
-  --nav-h:      48px;
-  --sidebar-w:  240px;
+  --r:          12px;
+  --nav-h:      72px;
+  --sidebar-w:  260px;
+
+  /* Específico de scripts — color de error / estado */
+  --diff-hard:  #e06c6c;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,8 +34,8 @@ body {
   overflow-x: hidden;
 }
 
-a { color: var(--green); text-decoration: none; }
-a:hover { opacity: 0.75; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { opacity: 0.8; }
 .mono { font-family: var(--mono); }
 
 /* ─── LAYOUT ─────────────────────────────────────────────────── */
@@ -41,6 +44,11 @@ a:hover { opacity: 0.75; }
   grid-template-columns: var(--sidebar-w) 1fr;
   min-height: 100vh;
 }
+
+/* Ver nota equivalente en writeups/viewer.css: sin esto, un grid
+   item nunca encoge por debajo del min-content de su contenido y
+   puede forzar scroll horizontal en mobile. */
+.viewer-layout > * { min-width: 0; }
 
 /* ─── SIDEBAR ─────────────────────────────────────────────────── */
 .viewer-sidebar {
@@ -56,14 +64,16 @@ a:hover { opacity: 0.75; }
   display: flex; align-items: center; gap: 0.4rem;
   font-family: var(--mono); font-size: 0.75rem;
   color: var(--text-muted); transition: color 0.15s;
+  width: fit-content;
 }
-.back-link:hover { color: var(--green); opacity: 1; }
+.back-link:hover { color: var(--accent); opacity: 1; }
+.back-link svg { flex-shrink: 0; }
 
-/* Meta card */
+/* Meta card — mismo lenguaje visual que las tarjetas del sitio */
 .sc-meta-card {
   display: flex; flex-direction: column; gap: 0.75rem;
-  padding: 1rem; border-radius: 8px;
-  background: var(--bg-card); border: 1px solid var(--border-dim);
+  padding: 1.1rem; border-radius: var(--r);
+  background: var(--bg-card); border: 1px solid var(--border);
 }
 
 .meta-lang {
@@ -85,8 +95,9 @@ a:hover { opacity: 0.75; }
   font-family: var(--mono); font-size: 0.68rem;
   color: var(--text-muted); transition: color 0.15s;
   margin-top: 0.25rem;
+  width: fit-content;
 }
-.meta-repo:hover { color: var(--green); opacity: 1; }
+.meta-repo:hover { color: var(--accent); opacity: 1; }
 
 /* ─── CONTENIDO ──────────────────────────────────────────────── */
 .viewer-content {
@@ -98,10 +109,64 @@ a:hover { opacity: 0.75; }
   font-family: var(--mono); font-size: 0.8rem;
 }
 
+/* ─── CAPTURA DE EJECUCIÓN ───────────────────────────────────── */
+.sc-demo {
+  display: flex; flex-direction: column; gap: 0.65rem;
+  margin-bottom: 1.75rem;
+}
+
+.sc-demo-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+}
+
+.sc-demo-label {
+  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Botón "ghost" — mismo lenguaje que cert-view-btn en /certifications */
+.sc-demo-view-btn {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.sc-demo-view-btn:hover { border-color: var(--accent-dim); color: var(--text); background: var(--bg-card-2); }
+.sc-demo-view-btn svg { flex-shrink: 0; }
+
+.sc-demo-thumb-wrap {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--bg-code);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  max-height: 460px;
+  transition: border-color 0.18s;
+}
+.sc-demo-thumb-wrap:hover { border-color: var(--accent-dim); }
+
+.sc-demo-thumb {
+  width: 100%;
+  max-height: 460px;
+  object-fit: contain;
+  display: block;
+  transition: filter 0.2s;
+}
+.sc-demo-thumb-wrap:hover .sc-demo-thumb { filter: brightness(1.05); }
+
 /* ─── BLOQUE DE CÓDIGO ───────────────────────────────────────── */
 .sc-block {
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--r);
   overflow: hidden;
 }
 
@@ -123,7 +188,7 @@ a:hover { opacity: 0.75; }
   font-size: 0.65rem; color: var(--text-muted);
   cursor: pointer; transition: border-color 0.15s, color 0.15s;
 }
-.copy-btn:hover { border-color: var(--green-dim); color: var(--green); }
+.copy-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
 
 /* Override highlight.js background para que respete nuestro tema */
 .sc-pre {
@@ -135,13 +200,80 @@ a:hover { opacity: 0.75; }
 }
 
 .sc-pre code {
-  color: #e8e8e8 !important;
   font-family: var(--mono) !important;
   font-size: 0.82rem !important;
   line-height: 1.7 !important;
   background: transparent !important;
   padding: 0 !important;
 }
+
+/* Footer de cierre — link para volver a /scripts que sobrevive en
+   mobile (a diferencia del back-link del sidebar, que se oculta
+   junto con el resto del sidebar por debajo de 860px). */
+.viewer-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--border-dim);
+}
+.footer-back { font-size: 0.8rem; }
+
+.back-to-top-btn {
+  display: flex; align-items: center; gap: 0.4rem;
+  background: none; border: 1px solid var(--border);
+  border-radius: 999px; padding: 0.4rem 0.9rem;
+  font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted);
+  cursor: pointer; transition: border-color 0.15s, color 0.15s;
+}
+.back-to-top-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+/* ──────────────────────────────────────────────────────────────
+   VISOR DE CAPTURA — lightbox a pantalla completa
+   (idéntico en comportamiento y estilo al de /certifications)
+────────────────────────────────────────────────────────────── */
+.sc-viewer-overlay {
+  position: fixed; inset: 0;
+  background: rgba(5,7,10,0.85);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s;
+}
+.sc-viewer-overlay.open { opacity: 1; pointer-events: auto; }
+
+.sc-viewer-box {
+  position: relative;
+  max-width: min(1000px, 92vw);
+  max-height: 90vh;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.75rem;
+  display: flex;
+}
+
+.sc-viewer-img {
+  max-width: 100%;
+  max-height: calc(90vh - 1.5rem);
+  display: block;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.sc-viewer-close {
+  position: absolute; top: -14px; right: -14px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.sc-viewer-close:hover { background: #ffb648; }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 860px) {
@@ -154,4 +286,7 @@ a:hover { opacity: 0.75; }
   .sc-block-header { padding: 0.5rem 0.75rem; }
   .sc-pre { padding: 1rem; }
   .sc-pre code { font-size: 0.75rem !important; }
+  .sc-demo-thumb-wrap { max-height: 260px; }
+  .sc-demo-thumb { max-height: 260px; }
+  .sc-viewer-overlay { padding: 1rem; }
 }

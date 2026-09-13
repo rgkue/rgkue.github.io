@@ -19,7 +19,7 @@
   <link rel="icon" href="../assets/icon.png" />
   <link rel="stylesheet" href="viewer.css" />
   <!-- highlight.js para syntax highlighting -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/green-screen.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
@@ -54,6 +54,20 @@
     <!-- ══ CONTENIDO ════════════════════════════════════════════ -->
     <article class="viewer-content">
 
+      <!-- Captura de ejecución — solo visible si el script trae ?demo= -->
+      <div id="sc-demo" class="sc-demo" style="display:none">
+        <div class="sc-demo-header">
+          <span class="sc-demo-label mono">Captura de ejecución</span>
+          <button id="sc-demo-view-btn" class="sc-demo-view-btn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+            Ver en grande
+          </button>
+        </div>
+        <div class="sc-demo-thumb-wrap" id="sc-demo-thumb-wrap">
+          <img id="sc-demo-img" class="sc-demo-thumb" src="" alt="" loading="lazy" />
+        </div>
+      </div>
+
       <div id="sc-loading" class="sc-loading">
         <span class="mono">Cargando script...</span>
       </div>
@@ -71,8 +85,35 @@
         <pre class="sc-pre"><code id="sc-code"></code></pre>
       </div>
 
+      <footer class="viewer-footer">
+        <a href="index.html" class="back-link footer-back">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Volver a Scripts
+        </a>
+        <button id="back-to-top" class="back-to-top-btn" type="button">
+          Volver arriba
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"/>
+          </svg>
+        </button>
+      </footer>
+
     </article>
 
+  </div>
+
+  <!-- ══ VISOR DE CAPTURA — lightbox a pantalla completa ═══════ -->
+  <div class="sc-viewer-overlay" id="sc-viewer-overlay">
+    <div class="sc-viewer-box">
+      <img class="sc-viewer-img" id="sc-viewer-img" src="" alt="" />
+      <button class="sc-viewer-close" id="sc-viewer-close" type="button" aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
   </div>
 
   <script src="viewer.js"></script>

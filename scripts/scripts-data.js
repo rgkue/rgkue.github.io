@@ -13,6 +13,9 @@
  *   file        — ruta del archivo principal dentro del repo
  *                 (se carga vía raw.githubusercontent.com)
  *   image       — ruta a imagen/logo opcional (relativa a scripts/)
+ *   demo        — ruta a captura de ejecución opcional (relativa a
+ *                 scripts/); si existe, el viewer muestra el bloque
+ *                 "Captura de ejecución" con botón "Ver en grande"
  */
 const scriptsData = [
     {
@@ -24,6 +27,7 @@ const scriptsData = [
     repo:        "https://github.com/rgkue/mysqli",
     file:        "rgkue/mysqli/refs/heads/main/mysqli.py",
     image:       "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+    demo:        "assets/demo-mysqli.png",
   },
   {
     title:       "BashCheck",
@@ -34,6 +38,7 @@ const scriptsData = [
     repo:        "https://github.com/rgkue/bashcheck",
     file:        "rgkue/bashcheck/refs/heads/main/bashcheck.sh",
     image:       "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg",
+    demo:        "assets/demo-bashcheck.png",
   },
   {
     title:       "Shell-Colors",
@@ -44,5 +49,6 @@ const scriptsData = [
     repo:        "https://github.com/rgkue/shell-colors",
     file:        "rgkue/shell-colors/refs/heads/main/shell-colors.sh",
     image:       "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg",
+    demo:        "assets/demo-shell-colors.png",
   },
 ];

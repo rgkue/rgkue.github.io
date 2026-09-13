@@ -8,11 +8,18 @@ _site/
 .jekyll-metadata
 .gitignore
 .dist
+*.crdownload
+Thumbs.db
+.DS_Store
+node_modules/
+.env
 .vscode/
 .git
+.cursor/
 admin-panel/
 secrets/
-*.txt
+*.lnk
+*.tmp
 __pycache__*
 *.pyc
 

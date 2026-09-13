@@ -2,33 +2,6 @@
 const portfolioData = {
   projects: [
     {
-      category: "Projects",
-      icon: "🌐",
-      items: [
-        {
-          title: "Servidor Ubuntu como Router Domestico",
-          description: "Configuración de Ubuntu Server como router/access point editando archivos del sistema, con monitoreo de tráfico en red local y resolución de DNS mediante scripts Bash.",
-          tags: ["Ubuntu", "Linux", "Networking", "Bash", "Router"],
-          status: "done",
-          repo: "https://github.com/rgkue/ubuntuserver-router",
-        },
-        {
-          title: "Sitio web personal - Portafolio Profesional",
-          description: "Desarrollo de este portafolio personal utilizando HTML, CSS y JavaScript para mostrar proyectos, habilidades y experiencia profesional de forma clara y atractiva",
-          tags: ["HTML", "CSS", "JavaScript", "Web Development"],
-          status: "done",
-          repo: "https://github.com/rgkue/rgkue.github.io",
-        },
-        {
-          title: "Shell Colors",
-          description: "Pequeño programa en bash scripting para simular el uso de una shell o terminal.",
-          tags: ["Programming", "Linux", "Terminal", "Shell", "Scripting", "Bash"],
-          status: "in-progress",
-          repo: "https://github.com/rgkue/shell-colors",
-        }
-      ],
-    },
-    {
       category: "Cybersecurity",
       icon: "🔒",
       items: [
@@ -46,13 +19,6 @@ const portfolioData = {
           status: "done",
           repo: "https://github.com/rgkue/writeups-pentesting",
         },
-        {
-          title: "BashCheck",
-          description: "Herramienta de línea de comandos para la rápida verificación de hashes en archivos y exportación masiva de activos digitales",
-          tags: ["Bash", "Programming", "BashScripting", "Linux"],
-          status: "done",
-          repo: "https://github.com/rgkue/bashcheck",
-        },
       ],
     },
     {
@@ -66,21 +32,29 @@ const portfolioData = {
           status: "done",
           repo: "https://github.com/rgkue/rest-api",
         },
+        {
+          title: "Sitio web personal - Portafolio Profesional",
+          description: "Desarrollo de este portafolio personal utilizando HTML, CSS y JavaScript para mostrar proyectos, habilidades y experiencia profesional de forma clara y atractiva",
+          tags: ["HTML", "CSS", "JavaScript", "Web Development"],
+          status: "done",
+          repo: "https://github.com/rgkue/rgkue.github.io",
+        },
       ],
     },
-    /*    {
+    {
       category: "Networking",
       icon: "🌐",
       items: [
         {
-          title: "Configuración de Redes Locales con Linux",
-          description: "Laboratorio para la configuración y administración de redes locales utilizando herramientas de Linux.",
-          tags: ["Linux", "Networking", "Network Administration"],
-          status: "in-progress",
-          repo: "https://github.com/rgkue/local-networking-lab",
-        }
+          title: "Servidor Ubuntu como Router Domestico",
+          description: "Configuración de Ubuntu Server como router/access point editando archivos del sistema, con monitoreo de tráfico en red local y resolución de DNS mediante scripts Bash.",
+          tags: ["Ubuntu", "Linux", "Networking", "Bash", "Router"],
+          status: "done",
+          repo: "https://github.com/rgkue/ubuntuserver-router",
+        },
       ],
     },
+  /*  
     {
       category: "Harwdare Hacking",
       icon: "⚡",

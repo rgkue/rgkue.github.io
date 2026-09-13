@@ -1,7 +1,7 @@
 /**
  * projects.js — Renderizado de /projects/
  * Lee desde portfolioData (data.js).
- * Filtros: categoría (sidebar), tag (panel derecho), búsqueda (input).
+ * Filtros combinables: categoría + tecnología + estado (acordeón) + búsqueda.
  */
 
 const TAG_IMAGES = {
@@ -33,7 +33,8 @@ function thumbFor(proj, catName) {
     || "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg";
 }
 
-const svgGithub = `<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`;
+const svgGithub = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`;
+const svgCheck  = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
 
 const STATUS_MAP = {
   "done":        { cls: "s-done",     label: "Done" },
@@ -43,68 +44,97 @@ const STATUS_MAP = {
 
 let activeCategory = null;
 let activeTag      = null;
+let activeStatus   = null;
 let searchQuery    = '';
 
 function allProjects() {
   return portfolioData.projects.flatMap(c => c.items);
 }
 
+// ── Acordeón: abrir/cerrar (delegado una sola vez) ──────────────
+document.querySelectorAll('.accordion-head').forEach(head => {
+  head.addEventListener('click', () => {
+    head.closest('.accordion').classList.toggle('open');
+  });
+});
+
+function filterRow({ active, label, count, dotClass, onClick }) {
+  const row = document.createElement('button');
+  row.className = 'filter-row' + (active ? ' active' : '');
+  row.innerHTML = `
+    <span class="filter-check">${svgCheck}</span>
+    ${dotClass ? `<span class="filter-dot ${dotClass}"></span>` : ''}
+    <span class="filter-row-label">${label}</span>
+    <span class="filter-count">${count}</span>
+  `;
+  row.addEventListener('click', onClick);
+  return row;
+}
+
 function render() {
   const data = portfolioData.projects;
+  const all  = allProjects();
 
-  // ── Sidebar: categorías ──────────────────────────────────────
+  // ── Filtro: Categoría ────────────────────────────────────────
   const catList = document.getElementById("cat-list");
   catList.innerHTML = "";
   data.forEach(cat => {
-    const btn = document.createElement("button");
-    btn.className = "cat-btn" + (activeCategory === cat.category ? " active" : "");
-    btn.innerHTML = `<span>${cat.category}</span><span class="cat-num">${cat.items.length}</span>`;
-    btn.addEventListener("click", () => {
-      activeCategory = activeCategory === cat.category ? null : cat.category;
-      activeTag      = null;
-      searchQuery    = '';
-      document.getElementById('search-input').value = '';
-      render();
-    });
-    catList.appendChild(btn);
+    catList.appendChild(filterRow({
+      active: activeCategory === cat.category,
+      label: cat.category,
+      count: cat.items.length,
+      onClick: () => {
+        activeCategory = activeCategory === cat.category ? null : cat.category;
+        render();
+      }
+    }));
   });
 
-  // ── Panel derecho: conteos globales ─────────────────────────
-  const all = allProjects();
-  document.getElementById("count-done").textContent     = all.filter(p => p.status === "done").length;
-  document.getElementById("count-progress").textContent = all.filter(p => p.status === "in-progress").length;
-  document.getElementById("count-planned").textContent  = all.filter(p => p.status === "planned").length;
-
-  // Tags frecuentes
+  // ── Filtro: Tecnología (tags más frecuentes) ─────────────────
   const tagFreq = {};
   all.forEach(p => p.tags.forEach(t => { tagFreq[t] = (tagFreq[t] || 0) + 1; }));
-  const topTags = Object.entries(tagFreq).sort((a, b) => b[1] - a[1]).slice(0, 14).map(e => e[0]);
-  const tagsCloud = document.getElementById("tags-cloud");
-  tagsCloud.innerHTML = "";
-  topTags.forEach(tag => {
-    const s = document.createElement("span");
-    s.className = "cloud-tag" + (activeTag === tag ? " active" : "");
-    s.textContent = tag;
-    s.addEventListener("click", () => {
-      activeTag      = activeTag === tag ? null : tag;
-      activeCategory = null;
-      searchQuery    = '';
-      document.getElementById('search-input').value = '';
-      render();
-    });
-    tagsCloud.appendChild(s);
+  const topTags = Object.entries(tagFreq).sort((a, b) => b[1] - a[1]).slice(0, 14);
+  const tagList = document.getElementById("tag-list");
+  tagList.innerHTML = "";
+  topTags.forEach(([tag, count]) => {
+    tagList.appendChild(filterRow({
+      active: activeTag === tag,
+      label: tag,
+      count,
+      onClick: () => {
+        activeTag = activeTag === tag ? null : tag;
+        render();
+      }
+    }));
   });
 
-  // ── Filtrar ──────────────────────────────────────────────────
+  // ── Filtro: Estado ────────────────────────────────────────────
+  const statusList = document.getElementById("status-list");
+  statusList.innerHTML = "";
+  Object.entries(STATUS_MAP).forEach(([key, meta]) => {
+    const count = all.filter(p => p.status === key).length;
+    if (count === 0) return;
+    statusList.appendChild(filterRow({
+      active: activeStatus === key,
+      label: meta.label,
+      count,
+      dotClass: meta.cls,
+      onClick: () => {
+        activeStatus = activeStatus === key ? null : key;
+        render();
+      }
+    }));
+  });
+
+  // ── Aplicar filtros (combinables) + búsqueda ─────────────────
   const q = searchQuery.toLowerCase().trim();
 
   const filtered = data.map(cat => {
-    let items = cat.items;
-
     if (activeCategory && cat.category !== activeCategory) return { ...cat, items: [] };
 
-    if (activeTag) items = items.filter(p => p.tags.includes(activeTag));
-
+    let items = cat.items;
+    if (activeTag)    items = items.filter(p => p.tags.includes(activeTag));
+    if (activeStatus) items = items.filter(p => p.status === activeStatus);
     if (q) items = items.filter(p =>
       p.title.toLowerCase().includes(q) ||
       p.description.toLowerCase().includes(q) ||
@@ -114,12 +144,16 @@ function render() {
     return { ...cat, items };
   }).filter(cat => cat.items.length > 0);
 
-  // ── Feed ─────────────────────────────────────────────────────
+  const totalShown = filtered.reduce((n, c) => n + c.items.length, 0);
+  document.getElementById('feed-count').textContent =
+    `${totalShown} de ${all.length}`;
+
+  // ── Feed / grid ───────────────────────────────────────────────
   const feed = document.getElementById("projects-feed");
   feed.innerHTML = "";
 
   if (filtered.length === 0) {
-    feed.innerHTML = `<div class="empty-state">Sin resultados para "<strong>${q || activeTag || activeCategory}</strong>".</div>`;
+    feed.innerHTML = `<div class="empty-state">Sin resultados para "<strong>${q || activeTag || activeStatus && STATUS_MAP[activeStatus].label || activeCategory}</strong>".</div>`;
     return;
   }
 
@@ -129,7 +163,7 @@ function render() {
 
     const label = document.createElement("div");
     label.className = "cat-group-label";
-    label.textContent = `> ${cat.category}`;
+    label.textContent = `${cat.icon || ''} ${cat.category}`.trim();
     group.appendChild(label);
 
     const items = document.createElement("div");
@@ -142,19 +176,24 @@ function render() {
       const card = document.createElement("div");
       card.className = "project-card";
       card.innerHTML = `
+        <div class="proj-thumb-wrap">
+          <img class="proj-thumb" src="${thumb}" alt="${proj.title}" loading="lazy" onerror="this.style.display='none'" />
+          <span class="proj-status-badge"><span class="status-dot ${st.cls}"></span>${st.label}</span>
+        </div>
         <div class="proj-info">
-          <div class="proj-meta">
-            <span class="status-dot ${st.cls}"></span>
-            <span class="proj-status-text mono">${st.label}</span>
-          </div>
           <div class="proj-title">${proj.title}</div>
           <div class="proj-desc">${proj.description}</div>
-          <div class="proj-bottom">
-            <div class="proj-tags">${proj.tags.slice(0, 5).map(t => `<span class="tag">${t}</span>`).join("")}</div>
-            ${proj.repo ? `<a class="proj-link" href="${proj.repo}" target="_blank" rel="noopener">${svgGithub} Repositorio</a>` : ""}
-          </div>
+          <div class="proj-tags">${proj.tags.slice(0, 5).map(t => `<span class="tag">${t}</span>`).join("")}</div>
         </div>
-        <img class="proj-thumb" src="${thumb}" alt="${proj.title}" loading="lazy" onerror="this.style.display='none'" />
+        <div class="proj-footer">
+          <div class="proj-cat">
+            <span class="proj-cat-icon"><img src="${CAT_IMAGES[cat.category] || thumb}" alt="" /></span>
+            <span class="proj-cat-name">${cat.category}</span>
+          </div>
+          ${proj.repo
+            ? `<a class="proj-repo-btn" href="${proj.repo}" target="_blank" rel="noopener">${svgGithub} Ver repositorio</a>`
+            : `<span class="proj-repo-btn is-planned">Sin repo aún</span>`}
+        </div>
       `;
       items.appendChild(card);
     });
@@ -166,15 +205,14 @@ function render() {
 
 // ── Eventos ─────────────────────────────────────────────────────
 document.getElementById("search-input").addEventListener("input", e => {
-  searchQuery    = e.target.value;
-  activeCategory = null;
-  activeTag      = null;
+  searchQuery = e.target.value;
   render();
 });
 
 document.getElementById("reset-btn").addEventListener("click", () => {
   activeCategory = null;
   activeTag      = null;
+  activeStatus   = null;
   searchQuery    = '';
   document.getElementById('search-input').value = '';
   render();

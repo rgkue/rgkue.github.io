@@ -1,5 +1,5 @@
 /**
- * blog/data.js — Tu CMS de blog.
+ * blog/data.js - CMS de blog.
  * Para publicar un nuevo post: copia uno de los ejemplos,
  * cambia los datos y ponlo al inicio del array (más reciente primero).
  *
@@ -27,10 +27,40 @@ const BLOG = {
   ],
 
   // ── POSTS ────────────────────────────────────────────────────────
-  // ⚠ Orden: más reciente primero.
   posts: [
 
-        {
+      {
+      id: "cableado-utp",
+      title: "Cableado de Laboratorio en la UTP",
+      date: "2026-09-10",
+      category: "Redes",
+      tags: ["Cableado de red", "Planificación de laboratorio", "Trabajo en sitio"],
+      excerpt: "El día de hoy trabajé como asistente del Sr. Eliecer Castillo, miembro de DITIC en la Universidad Tecnológica de Panamá.",
+      cover: "assets/cableado.jpeg",
+      content: `
+            <p>Hoy fue un día productivo y de gran aprendizaje. Como parte de mi labor en el cuerpo de operadores de la Facultad de Sistemas de la Universidad Tecnológica de Panamá, tuve la oportunidad de asistir al Sr. Eliecer Castillo en la importante tarea de cablear el laboratorio de robótica (4-426).</p>
+
+            <h2>El Proceso de Instalación</h2>
+            <p>
+              La jornada comenzó con la planificación y ejecución del soterrado del cable, una tarea compleja que realizamos a través de la parte superior de los pasillos de la facultad, aprovechando el espacio sobre el techo.
+              Fue un trabajo minucioso que requirió precisión, organización y trabajo en equipo.
+            </p>
+            <p>
+              Una vez completado el tendido, nos trasladamos al centro de telecomunicaciones del edificio, donde realizamos la instalación y conexión de los cables a los paneles de parcheo.
+              Finalmente, llevamos la conexión hasta el laboratorio de robótica, donde procedimos con la instalación de los puntos de red, la configuración de los equipos y las pruebas finales para asegurar su correcto funcionamiento.
+            </p>
+
+            <h2>Lecciones Aprendidas y Gratitud</h2>
+            <p>
+              Participar en este proyecto de infraestructura fue una experiencia sumamente gratificante e inspiradora.
+              No solo pude aplicar mis conocimientos teóricos en un entorno real, sino que también aprendí muchísimo de la experiencia y el profesionalismo del Sr. Eliecer Castillo.
+              Agradezco profundamente la oportunidad de seguir creciendo y aprendiendo en este entorno mientras continúo mis estudios.
+              Espero seguir siendo parte de este fascinante mundo de las redes, logrando trabajos de alta calidad y generando experiencias maravillosas.
+            </p>
+          `,
+    },
+
+    {
       id: "ekogroup-2026",
       title: "EkoGroup 2026",
       date: "2026-04-18",
@@ -71,7 +101,7 @@ const BLOG = {
     {
       id: "visita-dell-technologies",
       title: "Visita a DELL Technologies",
-      date: "2026-04-20",
+      date: "2026-04-10",
       category: "Eventos",
       tags: ["DELL", "DataCenter", "Infraestructura"],
       excerpt: "En mi segundo año de bachillerato, tuve la oportunidad de visitar el centro de datos de DELL Technologies en Panamá",
@@ -105,7 +135,7 @@ const BLOG = {
     {
       id: "scripts-prueba-protocolo-tcp",
       title: "Scripts de prueba de protocolo TCP",
-      date: "2026-04-15",
+      date: "2026-04-20",
       category: "Redes",
       tags: ["Scripts", "Redes", "Fundamentos", "Python"],
       excerpt: "Scripts para probar el protocolo TCP con Python y librerias como Socket.",

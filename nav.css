@@ -3,41 +3,50 @@
 ─────────────────────────────────────────────────────────────── */
 
 #site-nav {
-  /* Default: fixed — acompaña el scroll en todas las páginas */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
-  height: 48px;
+  padding: 0 2.5rem;
+  height: 72px;
 
   background: transparent;
   border-bottom: none;
 
   font-family: inherit;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
 }
 
-/* En index: absolute — el scroll lo deja atrás */
+/* En index: absolute — el scroll lo deja atrás, se mezcla con el hero */
 body.page-index #site-nav {
   position: absolute;
   border-bottom-color: transparent;
 }
 
+/* En el resto de páginas: fondo sólido, para que el contenido
+   scrolleado no se vea "a través" del nav fijo */
+body:not(.page-index) #site-nav {
+  background: var(--bg, #0d1117);
+  border-bottom: 1px solid var(--border-dim, #21262d);
+}
+
 /* Compensar altura del nav en páginas NO-index */
 body:not(.page-index) {
-  padding-top: 48px;
+  padding-top: 72px;
 }
 
 /* ─── MARCA ────────────────────────────────────────────────────── */
 #site-nav .nav-brand {
-  color: #3ddc84;
-  font-weight: 600;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.05rem;
   letter-spacing: 0.04em;
   text-decoration: none;
   font-family: inherit;
@@ -61,52 +70,136 @@ body:not(.page-index) {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 6px;
-  color: #4e6b55;
+  color: var(--text);
   text-decoration: none;
   font-family: inherit;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   transition: color 0.15s, background 0.15s;
 }
 
 #site-nav .nav-links a:hover {
-  color: #d4e8d8;
-  background: rgba(61, 220, 132, 0.07);
+  color: var(--text);
+  background: var(--accent-soft);
 }
 
-#site-nav .nav-links a.active { color: #3ddc84; }
+#site-nav .nav-links a.active { color: var(--accent); }
 
 #site-nav .nav-links svg { opacity: 0.55; flex-shrink: 0; }
 #site-nav .nav-links a:hover svg,
 #site-nav .nav-links a.active svg { opacity: 1; }
 
-/* ─── DERECHA: ruta dinámica ──────────────────────────────────── */
-#site-nav .nav-right {
-  color: #2e4a35;
-  font-size: 0.68rem;
-  font-family: inherit;
-  letter-spacing: 0.04em;
+/* ─── MARCA + RUTA ─────────────────────────────────────────────── */
+#site-nav .nav-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
 }
+
+/* Hamburguesa — solo aparece en mobile (ver media query).
+   Vive junto a la marca (izquierda), nunca junto a #nav-extras
+   (derecha), para no poder quedar tapada por las redes/CV. */
+#site-nav .nav-toggle {
+  display: none;
+  align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  background: none; border: none;
+  color: var(--text, #e6edf3);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ─── REDES SOCIALES + CV (derecha) ─────────────────────────────── */
+#site-nav .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+#site-nav .nav-top-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+#site-nav .nav-top-socials a {
+  width: 34px; height: 34px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border, #30363d);
+  background: var(--bg-card, #161b22);
+  color: var(--text, #e6edf3);
+  transition: color 0.15s, border-color 0.15s;
+}
+#site-nav .nav-top-socials a:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim, var(--accent));
+}
+#site-nav .nav-cv-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.4rem 0.95rem;
+  background: var(--accent);
+  color: var(--bg, #161b22);
+  border-radius: 6px;
+  font-size: 0.75rem; font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+#site-nav .nav-cv-btn:hover { opacity: 0.85; color: var(--bg, #161b22); }
+/* El index ya tiene su propio bloque de redes+CV (#nav-extras) — evitar duplicado */
+body.page-index #site-nav .nav-right { display: none; }
 
 /* ─── RESPONSIVE ──────────────────────────────────────────────── */
 @media (max-width: 640px) {
   #site-nav {
     padding: 0 1rem;
   }
+
+  #site-nav .nav-toggle { display: flex; }
+
+  /* nav-links pasa a ser un dropdown oculto por defecto — ya NO se
+     comprime a solo-ícono centrado, porque eso es lo que quedaba
+     tapado por #nav-extras/.nav-right (las redes+CV, que son fixed
+     y siempre están por encima). Con el dropdown cerrado, nav-links
+     no ocupa espacio y no puede solaparse con nada. */
   #site-nav .nav-links {
-    position: static;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     transform: none;
+    flex-direction: column;
+    align-items: stretch;
     gap: 0;
+    background: var(--bg, #0d1117);
+    border-bottom: 1px solid var(--border-dim, #21262d);
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
   }
+
+  #site-nav.nav-open .nav-links { display: flex; }
+
+  #site-nav .nav-links li { width: 100%; }
+
   #site-nav .nav-links a {
-    padding: 0.3rem 0.45rem;
-    font-size: 0;        /* oculta texto, muestra solo icono */
+    padding: 0.85rem 1.25rem;
+    font-size: 0.78rem;   /* texto visible en el dropdown, no solo ícono */
+    border-radius: 0;
+    border-bottom: 1px solid var(--border-dim, #21262d);
   }
-  #site-nav .nav-links svg {
-    opacity: 0.7;
-  }
+  #site-nav .nav-links svg { opacity: 0.7; }
   #site-nav .nav-links a.active svg { opacity: 1; }
+
+  /* Home: #nav-extras (fixed, propio) sigue visible tal cual.
+     Resto de páginas: el dropdown no debe convivir visualmente con
+     nav-right (que igual permanece oculto en mobile, sin cambios). */
   #site-nav .nav-right {
     display: none;
   }

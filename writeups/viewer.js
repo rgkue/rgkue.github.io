@@ -68,7 +68,7 @@ async function loadWriteup() {
     marked.setOptions({ breaks: true, gfm: true });
 
     // Renderizar
-    body.innerHTML = marked.parse(markdown);
+    body.innerHTML = DOMPurify.sanitize(marked.parse(markdown));
     loading.style.display = "none";
 
     // Construir TOC desde h2 y h3
@@ -126,6 +126,27 @@ function initScrollSpy() {
   }, { rootMargin: "-10% 0px -80% 0px" });
 
   headings.forEach(h => observer.observe(h));
+}
+
+// ── Barra de progreso de lectura ─────────────────────────────────
+function initReadingProgress() {
+  const bar = document.getElementById("reading-progress");
+  if (!bar) return;
+  window.addEventListener("scroll", () => {
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const max = h.scrollHeight - h.clientHeight;
+    bar.style.width = max > 0 ? `${(scrolled / max) * 100}%` : "0%";
+  }, { passive: true });
+}
+initReadingProgress();
+
+// ── Botón "Volver arriba" ────────────────────────────────────────
+const backToTop = document.getElementById("back-to-top");
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 }
 
 // ── Init ───────────────────────────────────────────────────────
