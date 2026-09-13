@@ -39,6 +39,34 @@ const portfolioData = {
           status: "done",
           repo: "https://github.com/rgkue/rgkue.github.io",
         },
+        {
+          "title": "AWS Academy - Canvas Instructure Downloader",
+          "description": "Herramienta de línea de comandos para automatizar la descarga de recursos embebidos en la plataforma de Canvas Instructure (AWS Academy)",
+          "tags": [
+            "automation",
+            "whisper",
+            "python",
+            "aws",
+            "aws-academy",
+            "cli-tool"
+          ],
+          "status": "done",
+          "repo": "https://github.com/rgkue/aws-academy-instructure-downloader",
+          "image": "https://thesvg.org/icons/aws/mono.svg"
+        },
+        {
+          "title": "Reyscribe",
+          "description": "Software empaquetado en ejecutable para la transcripción de audios y vídeos.",
+          "tags": [
+            "development",
+            "software-solution",
+            "python",
+            "gradio",
+            "transcription"
+          ],
+          "status": "done",
+          "repo": "https://github.com/rgkue/reyscribe/"
+        },
       ],
     },
     {
