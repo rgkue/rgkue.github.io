@@ -26,7 +26,7 @@ const CERTIFICATIONS_DATA = {
     },
     {
       "id": "aws-foundations",
-      "name": "AWS Foundations",
+      "name": "AWS Cloud Foundations",
       "issuer": "AWS Academy",
       "certificateImage": "assets/aws-academy-graduate-cloud-foundations-training.png",
       "url": "https://www.credly.com/badges/539fb1b9-c328-4ba1-a15c-b5a6dc3c826c/public_url",
@@ -87,6 +87,14 @@ const CERTIFICATIONS_DATA = {
       "certificateImage": "assets/contecs-2025.jpg",
       "url": "",
       "date": "2025-09"
+    },
+    {
+      "id": "aws-cloud-security",
+      "name": "AWS Cloud Security Foundations",
+      "issuer": "AWS Academy",
+      "certificateImage": "assets/AWS_Academy_Cloud_Security_Foundations_Badge.png",
+      "url": "https://www.credly.com/badges/e3c9477a-8b5d-46a1-b17b-5f2aa08c37b9/public_url",
+      "date": "2026-09"
     },
   ]
 };
